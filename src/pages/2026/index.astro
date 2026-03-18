@@ -45,19 +45,19 @@ function minsToIcs(mins: number) {
 }
 
 const schedule = [
-  { start: t(10, 0),  end: t(10, 5),  title: "Introduction", speaker: "Organizing team" },
-  { start: t(10, 5),  end: t(10, 35), title: "Invited Talk I", speaker: "TBA" },
-  { start: t(10, 35), end: t(11, 5),  title: "Invited Talk II", speaker: "TBA" },
-  { start: t(11, 5),  end: t(11, 30), title: "Panel: Challenges in Neutral Atom Computing Software", speaker: "" },
-  { start: t(11, 30), end: t(13, 0),  title: "Lunch", speaker: "" },
-  { start: t(13, 0),  end: t(13, 30), title: "Invited Talk III", speaker: "TBA" },
-  { start: t(13, 30), end: t(14, 0),  title: "Invited Talk IV", speaker: "TBA" },
-  { start: t(14, 0),  end: t(14, 30), title: "Break", speaker: "" },
-  { start: t(14, 30), end: t(15, 0),  title: "Invited Talk V", speaker: "TBA" },
-  { start: t(15, 0),  end: t(15, 30), title: "Invited Talk VI", speaker: "TBA" },
-  { start: t(15, 30), end: t(15, 35), title: "Break", speaker: "" },
-  { start: t(15, 35), end: t(16, 25), title: "Panel Discussion & Open Q\u0026A", speaker: "" },
-  { start: t(16, 25), end: t(16, 30), title: "Closing Remarks", speaker: "" },
+  { start: t(10, 0),  end: t(10, 5),  title: "Introduction", speaker: "Organizing team", abstract: "" },
+  { start: t(10, 5),  end: t(10, 35), title: "Invited Talk I", speaker: "TBA", abstract: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
+  { start: t(10, 35), end: t(11, 5),  title: "Invited Talk II", speaker: "TBA", abstract: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
+  { start: t(11, 5),  end: t(11, 30), title: "Panel: Challenges in Neutral Atom Computing Software", speaker: "", abstract: "" },
+  { start: t(11, 30), end: t(13, 0),  title: "Lunch", speaker: "", abstract: "" },
+  { start: t(13, 0),  end: t(13, 30), title: "Invited Talk III", speaker: "TBA", abstract: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante." },
+  { start: t(13, 30), end: t(14, 0),  title: "Invited Talk IV", speaker: "TBA", abstract: "Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Donec sed odio dui. Maecenas faucibus mollis interdum." },
+  { start: t(14, 0),  end: t(14, 30), title: "Break", speaker: "", abstract: "" },
+  { start: t(14, 30), end: t(15, 0),  title: "Invited Talk V", speaker: "TBA", abstract: "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean lacinia bibendum nulla sed consectetur." },
+  { start: t(15, 0),  end: t(15, 30), title: "Invited Talk VI", speaker: "TBA", abstract: "Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet." },
+  { start: t(15, 30), end: t(15, 35), title: "Break", speaker: "", abstract: "" },
+  { start: t(15, 35), end: t(16, 25), title: "Panel Discussion & Open Q\u0026A", speaker: "", abstract: "" },
+  { start: t(16, 25), end: t(16, 30), title: "Closing Remarks", speaker: "", abstract: "" },
 ];
 
 const breaks = new Set(["Lunch", "Break"]);
@@ -205,10 +205,10 @@ const organizers = [
             <table>
               <thead>
                 <tr>
-                  <th>Time</th>
-                  <th>Duration</th>
-                  <th>Session</th>
-                  <th>Speaker</th>
+                  <th class="col-time">Time</th>
+                  <th class="col-duration">Duration</th>
+                  <th class="col-session">Session</th>
+                  <th class="col-speaker">Speaker</th>
                 </tr>
               </thead>
               <tbody>
@@ -216,7 +216,16 @@ const organizers = [
                   <tr class={item.title === "Lunch" || item.title === "Break" ? "break-row" : ""}>
                     <td class="schedule-time">{fmt(item.start)} – {fmt(item.end)}</td>
                     <td class="schedule-duration">{item.end - item.start} min</td>
-                    <td class="schedule-title">{item.title}</td>
+                    <td class="schedule-title">
+                      {item.abstract ? (
+                        <details class="talk-details">
+                          <summary><span class="abstract-tag">[abstract]</span> {item.title}</summary>
+                          <p class="talk-abstract">{item.abstract}</p>
+                        </details>
+                      ) : (
+                        item.title
+                      )}
+                    </td>
                     <td class="schedule-speaker">{item.speaker}</td>
                   </tr>
                 ))}
@@ -612,6 +621,7 @@ const organizers = [
   table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
   }
 
   thead th {
@@ -633,12 +643,15 @@ const organizers = [
     vertical-align: top;
   }
 
+  .col-time { width: 130px; }
+  .col-duration { width: 70px; }
+  .col-speaker { width: 100px; }
+
   .schedule-time {
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
     color: var(--c-text-secondary);
     font-size: 0.85rem;
-    width: 140px;
   }
 
   .calendar-actions {
@@ -680,6 +693,45 @@ const organizers = [
 
   .schedule-title {
     font-weight: 500;
+  }
+
+  .talk-details summary {
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .talk-details summary::-webkit-details-marker,
+  .talk-details summary::marker {
+    display: none;
+    content: "";
+  }
+
+  .abstract-tag {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--c-text-secondary);
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .talk-details summary:hover .abstract-tag {
+    opacity: 1;
+  }
+
+  .talk-details[open] .abstract-tag {
+    opacity: 0.8;
+  }
+
+  .talk-abstract {
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--c-text-secondary);
+    line-height: 1.6;
+    padding-left: 0.1rem;
+    border-left: 2px solid var(--c-border);
+    padding-left: 0.75rem;
   }
 
   .schedule-speaker {
