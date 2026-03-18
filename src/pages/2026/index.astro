@@ -13,6 +13,7 @@ function fmt(mins: number) {
   return `${h}:${m.toString().padStart(2, "0")}`;
 }
 
+
 const schedule = [
   { start: t(10, 0),  end: t(10, 5),  title: "Introduction", speaker: "Organizing team" },
   { start: t(10, 5),  end: t(10, 35), title: "Invited Talk I", speaker: "TBA" },
@@ -63,6 +64,9 @@ const organizers = [
   </head>
 
   <body>
+    <script>
+      import 'add-to-calendar-button';
+    </script>
     <nav>
       <div class="nav-inner">
         <a href="#" class="nav-brand">{workshopShort} <span class="nav-year">{year}</span></a>
@@ -165,6 +169,21 @@ const organizers = [
                 ))}
               </tbody>
             </table>
+          </div>
+          <div class="calendar-actions">
+            <add-to-calendar-button
+              name={`${workshopShort} ${year}: ${workshopTitle}`}
+              description={`Workshop at ${conference} ${year}. Details: https://cevena.github.io/2026/`}
+              startDate="2026-09-15"
+              startTime="10:00"
+              endTime="16:30"
+              timeZone="America/Toronto"
+              location="Metro Toronto Convention Centre, Toronto, Ontario, Canada"
+              options="'Apple','Google','iCal','Outlook.com','Microsoft365','Yahoo'"
+              buttonStyle="flat"
+              lightMode="bodyScheme"
+              size="3"
+            ></add-to-calendar-button>
           </div>
         </div>
       </section>

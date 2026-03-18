@@ -7,6 +7,7 @@ Workshop website for "Compilation, Emulation and Verification of Neutral Atom Pr
 - **Framework**: Astro (static site generation)
 - **Styling**: Vanilla CSS with CSS custom properties (no Tailwind)
 - **Fonts**: EB Garamond (serif headings) + Inter (sans body)
+- **Package manager**: pnpm (do NOT use npm)
 - **Deployment**: GitHub Pages at https://cevena.github.io
 
 ## Commit Convention
@@ -31,6 +32,7 @@ Examples:
 
 ## Project Structure
 
-- `src/pages/index.astro` — single landing page (all content and styles)
+- `src/pages/index.astro` — redirects to latest year (/2026/)
+- `src/pages/2026/index.astro` — 2026 workshop page (content and styles)
 - `public/` — static assets (favicon, images)
 - `astro.config.mjs` — Astro configuration with GitHub Pages site URL
