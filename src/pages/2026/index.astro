@@ -13,6 +13,36 @@ function fmt(mins: number) {
   return `${h}:${m.toString().padStart(2, "0")}`;
 }
 
+// Calendar links (workshop date TBD within Sept 13-18; using Sept 15 as placeholder)
+const calTitle = `${workshopShort} ${year}: ${workshopTitle}`;
+const calLocation = "Metro Toronto Convention Centre, Toronto, Ontario, Canada";
+const calDetails = `Workshop at ${conference} ${year}.\n${workshopTitle}\nhttps://cevena.github.io/2026/`;
+
+const gcalUrl = `https://calendar.google.com/calendar/render?${new URLSearchParams({
+  action: "TEMPLATE",
+  text: calTitle,
+  dates: "20260915T100000/20260915T163000",
+  ctz: "America/Toronto",
+  location: calLocation,
+  details: calDetails,
+})}`;
+
+const outlookUrl = `https://outlook.live.com/calendar/0/action/compose?${new URLSearchParams({
+  subject: calTitle,
+  startdt: "2026-09-15T10:00:00",
+  enddt: "2026-09-15T16:30:00",
+  location: calLocation,
+  body: calDetails,
+})}`;
+
+const calDate = "20260915";
+const calTZ = "America/Toronto";
+
+function minsToIcs(mins: number) {
+  const h = Math.floor(mins / 60).toString().padStart(2, "0");
+  const m = (mins % 60).toString().padStart(2, "0");
+  return `${calDate}T${h}${m}00`;
+}
 
 const schedule = [
   { start: t(10, 0),  end: t(10, 5),  title: "Introduction", speaker: "Organizing team" },
@@ -29,6 +59,32 @@ const schedule = [
   { start: t(15, 35), end: t(16, 25), title: "Panel Discussion & Open Q\u0026A", speaker: "" },
   { start: t(16, 25), end: t(16, 30), title: "Closing Remarks", speaker: "" },
 ];
+
+const breaks = new Set(["Lunch", "Break"]);
+
+// Generate multi-event .ics with each session as its own event
+const icsEvents = schedule
+  .filter((s) => !breaks.has(s.title))
+  .map((s) => {
+    const summary = s.speaker ? `${s.title} — ${s.speaker}` : s.title;
+    return [
+      "BEGIN:VEVENT",
+      `DTSTART;TZID=${calTZ}:${minsToIcs(s.start)}`,
+      `DTEND;TZID=${calTZ}:${minsToIcs(s.end)}`,
+      `SUMMARY:${workshopShort}: ${summary}`,
+      `LOCATION:${calLocation}`,
+      "END:VEVENT",
+    ].join("\r\n");
+  });
+
+const ics = [
+  "BEGIN:VCALENDAR",
+  "VERSION:2.0",
+  "PRODID:-//CEVENA//Workshop//EN",
+  ...icsEvents,
+  "END:VCALENDAR",
+].join("\r\n");
+const icsUri = `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`;
 
 const organizers = [
   { name: "Xiu-Zhe Luo", affiliation: "QuEra Computing Inc.", location: "Toronto, Canada", url: "https://rogerluo.dev" },
@@ -64,9 +120,6 @@ const organizers = [
   </head>
 
   <body>
-    <script>
-      import 'add-to-calendar-button';
-    </script>
     <nav>
       <div class="nav-inner">
         <a href="#" class="nav-brand">{workshopShort} <span class="nav-year">{year}</span></a>
@@ -171,19 +224,12 @@ const organizers = [
             </table>
           </div>
           <div class="calendar-actions">
-            <add-to-calendar-button
-              name={`${workshopShort} ${year}: ${workshopTitle}`}
-              description={`Workshop at ${conference} ${year}. Details: https://cevena.github.io/2026/`}
-              startDate="2026-09-15"
-              startTime="10:00"
-              endTime="16:30"
-              timeZone="America/Toronto"
-              location="Metro Toronto Convention Centre, Toronto, Ontario, Canada"
-              options="'Apple','Google','iCal','Outlook.com','Microsoft365','Yahoo'"
-              buttonStyle="flat"
-              lightMode="bodyScheme"
-              size="3"
-            ></add-to-calendar-button>
+            <span class="calendar-label">Add to calendar:</span>
+            <a href={gcalUrl} target="_blank" rel="noopener noreferrer">Google</a>
+            <span class="calendar-sep">/</span>
+            <a href={outlookUrl} target="_blank" rel="noopener noreferrer">Outlook</a>
+            <span class="calendar-sep">·</span>
+            <a href={icsUri} download="cevena-2026.ics">Download full schedule (.ics)</a>
           </div>
         </div>
       </section>
@@ -593,6 +639,35 @@ const organizers = [
     color: var(--c-text-secondary);
     font-size: 0.85rem;
     width: 140px;
+  }
+
+  .calendar-actions {
+    margin-top: 1.25rem;
+    font-size: 0.82rem;
+    color: var(--c-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .calendar-label {
+    margin-right: 0.25rem;
+  }
+
+  .calendar-sep {
+    opacity: 0.4;
+  }
+
+  .calendar-actions a {
+    color: var(--c-text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--c-border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .calendar-actions a:hover {
+    color: var(--c-text);
+    border-color: var(--c-text);
   }
 
   .schedule-duration {
