@@ -1,0 +1,731 @@
+---
+const workshopTitle = "CEVENA";
+const workshopSubtitle = "Compilation, Emulation and Verification of Neutral Atom Programs";
+const conference = "IEEE International Conference on Quantum Computing and Engineering (QCE)";
+const year = "2026";
+const date = "September 2026";
+const location = "Montréal, Québec, Canada";
+
+const schedule = [
+  { time: "09:00 – 09:15", title: "Opening Remarks", speaker: "" },
+  { time: "09:15 – 10:00", title: "Invited Talk I", speaker: "TBA" },
+  { time: "10:00 – 10:30", title: "Coffee Break", speaker: "" },
+  { time: "10:30 – 11:15", title: "Invited Talk II", speaker: "TBA" },
+  { time: "11:15 – 12:00", title: "Contributed Talks", speaker: "" },
+  { time: "12:00 – 13:30", title: "Lunch", speaker: "" },
+  { time: "13:30 – 14:15", title: "Invited Talk III", speaker: "TBA" },
+  { time: "14:15 – 15:00", title: "Invited Talk IV", speaker: "TBA" },
+  { time: "15:00 – 15:30", title: "Coffee Break", speaker: "" },
+  { time: "15:30 – 16:30", title: "Panel Discussion", speaker: "" },
+  { time: "16:30 – 16:45", title: "Closing Remarks", speaker: "" },
+];
+
+const speakers = [
+  {
+    name: "TBA",
+    affiliation: "",
+    topic: "",
+  },
+];
+
+const organizers = [
+  { name: "TBA", affiliation: "" },
+];
+
+const topics = [
+  "Compilation strategies for neutral atom quantum computers",
+  "Quantum circuit optimization for reconfigurable atom arrays",
+  "Classical emulation and simulation of neutral atom dynamics",
+  "Verification and validation of neutral atom programs",
+  "Error mitigation techniques for neutral atom platforms",
+  "Intermediate representations for neutral atom computation",
+  "Benchmarking neutral atom compilers and emulators",
+  "Hardware-software co-design for atom array architectures",
+  "Pulse-level programming and optimization",
+  "Formal methods for quantum program correctness",
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{workshopTitle} {year} — {workshopSubtitle}</title>
+    <meta name="description" content={`${workshopTitle} Workshop at ${conference} ${year}. ${workshopSubtitle}.`} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <script is:inline>
+      (function() {
+        var mode = localStorage.getItem('theme') || 'system';
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
+        document.documentElement.setAttribute('data-theme', resolved);
+        document.documentElement.setAttribute('data-theme-mode', mode);
+      })();
+    </script>
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <a href="#" class="nav-brand">{workshopTitle} <span class="nav-year">{year}</span></a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#speakers">Speakers</a>
+          <a href="#venue">Venue</a>
+          <button id="theme-toggle" type="button" aria-label="Toggle theme">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="icon-system" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header>
+      <div class="header-inner">
+        <p class="header-conference">{conference}</p>
+        <h1 class="header-title">{workshopTitle}</h1>
+        <p class="header-subtitle">{workshopSubtitle}</p>
+        <div class="header-meta">
+          <span class="header-meta-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            {date}
+          </span>
+          <span class="header-meta-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            {location}
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="about" class="section">
+        <div class="container">
+          <h2>About the Workshop</h2>
+          <div class="about-content">
+            <p>
+              Neutral atom quantum computing has emerged as one of the most promising platforms
+              for scalable quantum information processing. With recent advances in reconfigurable
+              atom arrays, high-fidelity entangling gates, and mid-circuit measurements, the need
+              for robust software toolchains — compilers, emulators, and verification tools — has
+              become increasingly urgent.
+            </p>
+            <p>
+              The <strong>CEVENA</strong> workshop brings together researchers and practitioners
+              working on the software stack for neutral atom quantum computers. We aim to foster
+              discussion on compilation strategies, classical emulation techniques, and formal
+              verification methods tailored to the unique characteristics of atom array architectures.
+            </p>
+          </div>
+
+          <h3>Topics of Interest</h3>
+          <ul class="topics-list">
+            {topics.map((topic) => (
+              <li>{topic}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section id="schedule" class="section section-alt">
+        <div class="container">
+          <h2>Schedule</h2>
+          <p class="section-note">Tentative schedule. All times are local ({location.split(",")[0]}).</p>
+          <div class="schedule-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Session</th>
+                  <th>Speaker</th>
+                </tr>
+              </thead>
+              <tbody>
+                {schedule.map((item) => (
+                  <tr class={item.title === "Coffee Break" || item.title === "Lunch" ? "break-row" : ""}>
+                    <td class="schedule-time">{item.time}</td>
+                    <td class="schedule-title">{item.title}</td>
+                    <td class="schedule-speaker">{item.speaker}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="speakers" class="section">
+        <div class="container">
+          <h2>Invited Speakers</h2>
+          <p class="section-note">Speaker announcements coming soon.</p>
+          <div class="speakers-grid">
+            {speakers.map((speaker) => (
+              <div class="speaker-card">
+                <div class="speaker-avatar">
+                  <span>{speaker.name === "TBA" ? "?" : speaker.name.charAt(0)}</span>
+                </div>
+                <div class="speaker-info">
+                  <h3>{speaker.name}</h3>
+                  {speaker.affiliation && <p class="speaker-affiliation">{speaker.affiliation}</p>}
+                  {speaker.topic && <p class="speaker-topic">{speaker.topic}</p>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="organizers" class="section section-alt">
+        <div class="container">
+          <h2>Organizers</h2>
+          <div class="organizers-list">
+            {organizers.map((org) => (
+              <div class="organizer">
+                <strong>{org.name}</strong>
+                {org.affiliation && <span>, {org.affiliation}</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="venue" class="section">
+        <div class="container">
+          <h2>Venue</h2>
+          <p>
+            The workshop is co-located with <strong>{conference}</strong> in {location}.
+            Detailed venue information will be announced closer to the event.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section-cta">
+        <div class="container">
+          <h2>Call for Contributions</h2>
+          <p>
+            We invite submissions of extended abstracts (2–4 pages) on topics related
+            to compilation, emulation, and verification for neutral atom quantum computing.
+            Submission details will be announced soon.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>{workshopTitle} {year} — Workshop at {conference}</p>
+        <p class="footer-sub">Questions? Contact us at <a href="mailto:cevena-workshop@example.com">cevena-workshop@example.com</a></p>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.getElementById('theme-toggle')!;
+      const cycle: Record<string, string> = { light: 'dark', dark: 'system', system: 'light' };
+
+      function applyTheme(mode: string) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
+        document.documentElement.setAttribute('data-theme', resolved);
+        document.documentElement.setAttribute('data-theme-mode', mode);
+        if (mode === 'system') {
+          localStorage.removeItem('theme');
+        } else {
+          localStorage.setItem('theme', mode);
+        }
+      }
+
+      toggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme-mode') || 'system';
+        applyTheme(cycle[current]);
+      });
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        const mode = document.documentElement.getAttribute('data-theme-mode');
+        if (mode === 'system') {
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  :root {
+    --font-serif: 'EB Garamond', 'Georgia', serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --c-bg: #faf9f7;
+    --c-bg-alt: #f3f1ee;
+    --c-text: #2c2c2c;
+    --c-text-secondary: #6b6560;
+    --c-accent: #4a5568;
+    --c-accent-dark: #2d3748;
+    --c-border: #e2dfd9;
+    --c-rule: #d4d0c8;
+    --c-link: #5a4f3f;
+    --c-link-hover: #3d3427;
+    --c-cta-bg: #3b3029;
+    --c-cta-text: #f5f0eb;
+
+    --c-nav-bg: rgba(250, 249, 247, 0.92);
+  }
+
+  :root[data-theme="dark"] {
+      --c-bg: #1a1a1a;
+      --c-bg-alt: #222120;
+      --c-text: #e0ddd8;
+      --c-text-secondary: #9a9590;
+      --c-accent: #a0aec0;
+      --c-accent-dark: #cbd5e0;
+      --c-border: #333130;
+      --c-rule: #3d3a37;
+      --c-link: #c4b8a8;
+      --c-link-hover: #e0d6c8;
+      --c-cta-bg: #2a2320;
+      --c-cta-text: #e8e2da;
+
+    --c-nav-bg: rgba(26, 26, 26, 0.92);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--c-text);
+    background: var(--c-bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Navigation */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--c-nav-bg);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .nav-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-brand {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--c-text);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-year {
+    font-weight: 400;
+    color: var(--c-text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.75rem;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--c-text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--c-text);
+  }
+
+  #theme-toggle {
+    background: none;
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    padding: 0.3rem 0.4rem;
+    cursor: pointer;
+    color: var(--c-text-secondary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s;
+    line-height: 1;
+  }
+
+  #theme-toggle:hover {
+    color: var(--c-text);
+    border-color: var(--c-rule);
+  }
+
+  .icon-sun, .icon-moon, .icon-system { display: none; }
+  :root[data-theme-mode="light"] .icon-sun { display: inline; }
+  :root[data-theme-mode="dark"] .icon-moon { display: inline; }
+  :root[data-theme-mode="system"] .icon-system { display: inline; }
+
+  /* Header */
+  header {
+    padding: 5rem 1.5rem 4rem;
+    text-align: center;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .header-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .header-conference {
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--c-text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .header-title {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--c-text);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .header-subtitle {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--c-text-secondary);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .header-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .header-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    color: var(--c-text-secondary);
+    font-weight: 400;
+  }
+
+  .header-meta-item svg {
+    opacity: 0.6;
+  }
+
+  /* Sections */
+  .section {
+    padding: 4rem 1.5rem;
+  }
+
+  .section-alt {
+    background: var(--c-bg-alt);
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--c-text);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--c-rule);
+  }
+
+  h3 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--c-text);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-note {
+    font-size: 0.85rem;
+    color: var(--c-text-secondary);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  /* About */
+  .about-content p {
+    margin-bottom: 1rem;
+    color: var(--c-text);
+    font-size: 0.95rem;
+  }
+
+  .topics-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .topics-list li {
+    font-size: 0.9rem;
+    color: var(--c-text);
+    padding: 0.4rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .topics-list li:last-child {
+    border-bottom: none;
+  }
+
+  .topics-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--c-text-secondary);
+    opacity: 0.5;
+  }
+
+  /* Schedule */
+  .schedule-table {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead th {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--c-text-secondary);
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 2px solid var(--c-rule);
+  }
+
+  tbody td {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--c-border);
+    vertical-align: top;
+  }
+
+  .schedule-time {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    color: var(--c-text-secondary);
+    font-size: 0.85rem;
+    width: 140px;
+  }
+
+  .schedule-title {
+    font-weight: 500;
+  }
+
+  .schedule-speaker {
+    color: var(--c-text-secondary);
+    font-style: italic;
+  }
+
+  .break-row td {
+    color: var(--c-text-secondary);
+    font-style: italic;
+  }
+
+  .break-row .schedule-title {
+    font-weight: 400;
+  }
+
+  /* Speakers */
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .speaker-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    background: var(--c-bg);
+  }
+
+  .speaker-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--c-bg-alt);
+    border: 1px solid var(--c-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .speaker-avatar span {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--c-text-secondary);
+  }
+
+  .speaker-info h3 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .speaker-affiliation {
+    font-size: 0.82rem;
+    color: var(--c-text-secondary);
+    margin-top: 0.15rem;
+  }
+
+  .speaker-topic {
+    font-size: 0.82rem;
+    color: var(--c-text-secondary);
+    font-style: italic;
+    margin-top: 0.3rem;
+  }
+
+  /* Organizers */
+  .organizers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .organizer {
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .organizer:last-child {
+    border-bottom: none;
+  }
+
+  .organizer span {
+    color: var(--c-text-secondary);
+  }
+
+  /* CTA */
+  .section-cta {
+    background: var(--c-cta-bg);
+    color: var(--c-cta-text);
+  }
+
+  .section-cta h2 {
+    color: var(--c-cta-text);
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .section-cta p {
+    color: var(--c-cta-text);
+    opacity: 0.85;
+    font-size: 0.95rem;
+  }
+
+  /* Footer */
+  footer {
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border-top: 1px solid var(--c-border);
+  }
+
+  footer p {
+    font-size: 0.82rem;
+    color: var(--c-text-secondary);
+  }
+
+  .footer-sub {
+    margin-top: 0.3rem;
+    font-size: 0.78rem !important;
+  }
+
+  footer a {
+    color: var(--c-link);
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: var(--c-link-hover);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .header-title {
+      font-size: 2.6rem;
+    }
+
+    .header-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .nav-links {
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+    }
+
+    .section {
+      padding: 3rem 1.25rem;
+    }
+
+    .header-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+    }
+  }
+</style>
