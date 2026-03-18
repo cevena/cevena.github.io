@@ -1,48 +1,41 @@
 ---
-const workshopTitle = "CEVENA";
-const workshopSubtitle = "Compilation, Emulation and Verification of Neutral Atom Programs";
-const conference = "IEEE International Conference on Quantum Computing and Engineering (QCE)";
+const workshopShort = "CEVENA";
+const workshopTitle = "Compilation, Emulation and Verification for Neutral Atom Computing";
+const conference = "IEEE Quantum Week";
 const year = "2026";
-const date = "September 2026";
-const location = "Montréal, Québec, Canada";
+const date = "September 13–18, 2026";
+const location = "Toronto, Ontario, Canada";
+
+function t(h: number, m: number) { return h * 60 + m; }
+function fmt(mins: number) {
+  const h = Math.floor(mins / 60);
+  const m = mins % 60;
+  return `${h}:${m.toString().padStart(2, "0")}`;
+}
 
 const schedule = [
-  { time: "09:00 – 09:15", title: "Opening Remarks", speaker: "" },
-  { time: "09:15 – 10:00", title: "Invited Talk I", speaker: "TBA" },
-  { time: "10:00 – 10:30", title: "Coffee Break", speaker: "" },
-  { time: "10:30 – 11:15", title: "Invited Talk II", speaker: "TBA" },
-  { time: "11:15 – 12:00", title: "Contributed Talks", speaker: "" },
-  { time: "12:00 – 13:30", title: "Lunch", speaker: "" },
-  { time: "13:30 – 14:15", title: "Invited Talk III", speaker: "TBA" },
-  { time: "14:15 – 15:00", title: "Invited Talk IV", speaker: "TBA" },
-  { time: "15:00 – 15:30", title: "Coffee Break", speaker: "" },
-  { time: "15:30 – 16:30", title: "Panel Discussion", speaker: "" },
-  { time: "16:30 – 16:45", title: "Closing Remarks", speaker: "" },
-];
-
-const speakers = [
-  {
-    name: "TBA",
-    affiliation: "",
-    topic: "",
-  },
+  { start: t(10, 0),  end: t(10, 5),  title: "Introduction", speaker: "Organizing team" },
+  { start: t(10, 5),  end: t(10, 35), title: "Invited Talk I", speaker: "TBA" },
+  { start: t(10, 35), end: t(11, 5),  title: "Invited Talk II", speaker: "TBA" },
+  { start: t(11, 5),  end: t(11, 30), title: "Panel: Challenges in Neutral Atom Computing Software", speaker: "" },
+  { start: t(11, 30), end: t(13, 0),  title: "Lunch", speaker: "" },
+  { start: t(13, 0),  end: t(13, 30), title: "Invited Talk III", speaker: "TBA" },
+  { start: t(13, 30), end: t(14, 0),  title: "Invited Talk IV", speaker: "TBA" },
+  { start: t(14, 0),  end: t(14, 30), title: "Break", speaker: "" },
+  { start: t(14, 30), end: t(15, 0),  title: "Invited Talk V", speaker: "TBA" },
+  { start: t(15, 0),  end: t(15, 30), title: "Invited Talk VI", speaker: "TBA" },
+  { start: t(15, 30), end: t(15, 35), title: "Break", speaker: "" },
+  { start: t(15, 35), end: t(16, 25), title: "Panel Discussion & Open Q\u0026A", speaker: "" },
+  { start: t(16, 25), end: t(16, 30), title: "Closing Remarks", speaker: "" },
 ];
 
 const organizers = [
-  { name: "TBA", affiliation: "" },
-];
-
-const topics = [
-  "Compilation strategies for neutral atom quantum computers",
-  "Quantum circuit optimization for reconfigurable atom arrays",
-  "Classical emulation and simulation of neutral atom dynamics",
-  "Verification and validation of neutral atom programs",
-  "Error mitigation techniques for neutral atom platforms",
-  "Intermediate representations for neutral atom computation",
-  "Benchmarking neutral atom compilers and emulators",
-  "Hardware-software co-design for atom array architectures",
-  "Pulse-level programming and optimization",
-  "Formal methods for quantum program correctness",
+  { name: "Xiu-Zhe Luo", affiliation: "QuEra Computing Inc.", location: "Toronto, Canada", url: "https://rogerluo.dev" },
+  { name: "Rafael Haenel", affiliation: "QuEra Computing Inc.", location: "Boston, USA", url: "https://www.linkedin.com/in/rafael-haenel/" },
+  { name: "Phillip Weinberg", affiliation: "QuEra Computing Inc.", location: "Boston, USA", url: "https://www.linkedin.com/in/phillip-weinberg-a8a55262/" },
+  { name: "Jonathan Wurtz", affiliation: "QuEra Computing Inc.", location: "Boston, USA", url: "https://www.linkedin.com/in/jonathan-wurtz-7a4855181/" },
+  { name: "Pedro Lopes", affiliation: "QuEra Computing Inc.", location: "Boston, USA", url: "https://www.linkedin.com/in/pedrolslopes/" },
+  { name: "Yufei Ding", affiliation: "University of California, San Diego", location: "San Diego, USA", url: "" },
 ];
 ---
 
@@ -52,8 +45,8 @@ const topics = [
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>{workshopTitle} {year} — {workshopSubtitle}</title>
-    <meta name="description" content={`${workshopTitle} Workshop at ${conference} ${year}. ${workshopSubtitle}.`} />
+    <title>{workshopTitle} — {workshopShort} {year}</title>
+    <meta name="description" content={`${workshopTitle}. A workshop at ${conference} ${year}.`} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -72,11 +65,11 @@ const topics = [
   <body>
     <nav>
       <div class="nav-inner">
-        <a href="#" class="nav-brand">{workshopTitle} <span class="nav-year">{year}</span></a>
+        <a href="#" class="nav-brand">{workshopShort} <span class="nav-year">{year}</span></a>
         <div class="nav-links">
           <a href="#about">About</a>
           <a href="#schedule">Schedule</a>
-          <a href="#speakers">Speakers</a>
+          <a href="#organizers">Organizers</a>
           <a href="#venue">Venue</a>
           <button id="theme-toggle" type="button" aria-label="Toggle theme">
             <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
@@ -91,7 +84,6 @@ const topics = [
       <div class="header-inner">
         <p class="header-conference">{conference}</p>
         <h1 class="header-title">{workshopTitle}</h1>
-        <p class="header-subtitle">{workshopSubtitle}</p>
         <div class="header-meta">
           <span class="header-meta-item">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -111,46 +103,62 @@ const topics = [
           <h2>About the Workshop</h2>
           <div class="about-content">
             <p>
-              Neutral atom quantum computing has emerged as one of the most promising platforms
-              for scalable quantum information processing. With recent advances in reconfigurable
-              atom arrays, high-fidelity entangling gates, and mid-circuit measurements, the need
-              for robust software toolchains — compilers, emulators, and verification tools — has
-              become increasingly urgent.
+              Neutral atom quantum computing has witnessed rapid progress toward utility-scale, fault-tolerant quantum computing (FTQC). As neutral atom arrays emerge as a powerful platform for quantum error correction demonstrations, the inherent flexibility of this architecture gives rise to a rich set of open problems at the software level -- spanning compilers, emulators, and programming languages.
             </p>
             <p>
-              The <strong>CEVENA</strong> workshop brings together researchers and practitioners
-              working on the software stack for neutral atom quantum computers. We aim to foster
-              discussion on compilation strategies, classical emulation techniques, and formal
-              verification methods tailored to the unique characteristics of atom array architectures.
+              This workshop brings together software developers and researchers from across the ecosystem to exchange ideas, present new approaches, and identify key open challenges arise from neutral atom devices. Topics of focus include: (1) move compilation with arbitrary qubit moves; (2) move scheduling under fixed-lane architectures; (3) realistic emulation of neutral atom programs; and (4) programming languages and formal verification for neutral atom devices.
+            </p>
+            <p>
+              The workshop will open with invited talks covering these topics, followed by a panel discussion with stakeholders from across the full neutral atom software stack, with the goal of advancing a shared, community-driven programming ecosystem.
             </p>
           </div>
 
-          <h3>Topics of Interest</h3>
-          <ul class="topics-list">
-            {topics.map((topic) => (
-              <li>{topic}</li>
-            ))}
-          </ul>
+          <h3>Key Challenges</h3>
+          <div class="challenges">
+            <div class="challenge">
+              <h4>Lack of a converged programming model</h4>
+              <p>The hardware architecture of neutral atom platforms continues to evolve rapidly, and the field has yet to converge on a standard programming model. Proposed architectures vary widely -- from zoned layouts optimized for scheduling to fixed-lane designs that simplify calibration. Recent advances such as continuous atom reloading introduce further programmability at the hardware level, leaving the execution model an open and exciting question.</p>
+            </div>
+            <div class="challenge">
+              <h4>Move optimization as an active research frontier</h4>
+              <p>A growing body of work has addressed qubit move optimization, yet the problem remains open. Emerging questions -- such as how move optimization integrates with practical error correction and how it fits within hardware-software-algorithm co-design -- are becoming prominent research directions.</p>
+            </div>
+            <div class="challenge">
+              <h4>Scalability of emulation and verification</h4>
+              <p>As hardware scales, realistic emulation and verification grow increasingly demanding. A typical error correction experiment already involves more than a hundred physical qubits; simulating such systems under realistic noise models and verifying their fidelity calls for new emulation methods that go beyond conventional approaches.</p>
+            </div>
+            <div class="challenge">
+              <h4>Program correctness under new programming models</h4>
+              <p>The high scalability and flexibility of neutral atom hardware gives rise to a highly asynchronous, parallel programming model. As programs grow in complexity, developing robust methods to verify their correctness becomes an important and largely open challenge, with clear analogies to formal verification efforts in classical software engineering.</p>
+            </div>
+          </div>
         </div>
       </section>
 
       <section id="schedule" class="section section-alt">
         <div class="container">
           <h2>Schedule</h2>
+          <div class="about-content">
+            <p>
+              The workshop is scheduled as a full day session for a total of approximately 4.5 hours of programming. The format is designed to balance technical depth with open community discussion. The session will open with 4 to 5 invited talks of 30 minutes each, covering the core topics of the workshop. Following the talks, the workshop will transition into a structured brainstorming and Q&A session, designed to surface open problems and emerging research directions. The session will conclude with a moderated panel discussion, bringing together the invited speakers and other stakeholders from across the neutral atom software stack.
+            </p>
+          </div>
           <p class="section-note">Tentative schedule. All times are local ({location.split(",")[0]}).</p>
           <div class="schedule-table">
             <table>
               <thead>
                 <tr>
                   <th>Time</th>
+                  <th>Duration</th>
                   <th>Session</th>
                   <th>Speaker</th>
                 </tr>
               </thead>
               <tbody>
                 {schedule.map((item) => (
-                  <tr class={item.title === "Coffee Break" || item.title === "Lunch" ? "break-row" : ""}>
-                    <td class="schedule-time">{item.time}</td>
+                  <tr class={item.title === "Lunch" || item.title === "Break" ? "break-row" : ""}>
+                    <td class="schedule-time">{fmt(item.start)} – {fmt(item.end)}</td>
+                    <td class="schedule-duration">{item.end - item.start} min</td>
                     <td class="schedule-title">{item.title}</td>
                     <td class="schedule-speaker">{item.speaker}</td>
                   </tr>
@@ -161,38 +169,34 @@ const topics = [
         </div>
       </section>
 
-      <section id="speakers" class="section">
+      <section id="organizers" class="section section-alt">
         <div class="container">
-          <h2>Invited Speakers</h2>
-          <p class="section-note">Speaker announcements coming soon.</p>
-          <div class="speakers-grid">
-            {speakers.map((speaker) => (
-              <div class="speaker-card">
-                <div class="speaker-avatar">
-                  <span>{speaker.name === "TBA" ? "?" : speaker.name.charAt(0)}</span>
+          <h2>Organizers</h2>
+          <div class="organizers-grid">
+            {organizers.map((org) => (
+              <div class="organizer-card">
+                <div class="organizer-avatar">
+                  <span>{org.name.charAt(0)}</span>
                 </div>
-                <div class="speaker-info">
-                  <h3>{speaker.name}</h3>
-                  {speaker.affiliation && <p class="speaker-affiliation">{speaker.affiliation}</p>}
-                  {speaker.topic && <p class="speaker-topic">{speaker.topic}</p>}
-                </div>
+                {org.url ? (
+                  <a href={org.url} class="organizer-name" target="_blank" rel="noopener noreferrer">{org.name}</a>
+                ) : (
+                  <h3 class="organizer-name">{org.name}</h3>
+                )}
+                <p class="organizer-affiliation">{org.affiliation}</p>
+                <p class="organizer-location">{org.location}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="organizers" class="section section-alt">
+      <section id="audience" class="section">
         <div class="container">
-          <h2>Organizers</h2>
-          <div class="organizers-list">
-            {organizers.map((org) => (
-              <div class="organizer">
-                <strong>{org.name}</strong>
-                {org.affiliation && <span>, {org.affiliation}</span>}
-              </div>
-            ))}
-          </div>
+          <h2>Target Audience</h2>
+          <p>
+            This workshop is intended for researchers, developers, and practitioners from both industry and academia with foundational knowledge of neutral atom quantum computing. It will be of particular interest to those working on or curious about compilation, emulation, and formal verification of neutral atom programs -- including graduate students and early-career researchers looking to engage with open problems at the software-hardware interface in the neutral atom domain.
+          </p>
         </div>
       </section>
 
@@ -200,8 +204,8 @@ const topics = [
         <div class="container">
           <h2>Venue</h2>
           <p>
-            The workshop is co-located with <strong>{conference}</strong> in {location}.
-            Detailed venue information will be announced closer to the event.
+            The workshop is co-located with <strong>{conference} 2026</strong> at the
+            Metro Toronto Convention Centre (MTCC) in {location}.
           </p>
         </div>
       </section>
@@ -220,7 +224,7 @@ const topics = [
 
     <footer>
       <div class="container">
-        <p>{workshopTitle} {year} — Workshop at {conference}</p>
+        <p>{workshopShort} {year} — Workshop at {conference}</p>
         <p class="footer-sub">Questions? Contact us at <a href="mailto:cevena-workshop@example.com">cevena-workshop@example.com</a></p>
       </div>
     </footer>
@@ -414,22 +418,12 @@ const topics = [
 
   .header-title {
     font-family: var(--font-serif);
-    font-size: 4rem;
+    font-size: 2.4rem;
     font-weight: 500;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.02em;
     color: var(--c-text);
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-
-  .header-subtitle {
-    font-family: var(--font-serif);
-    font-size: 1.35rem;
-    font-weight: 400;
-    color: var(--c-text-secondary);
-    line-height: 1.5;
+    line-height: 1.25;
     margin-bottom: 2rem;
-    font-style: italic;
   }
 
   .header-meta {
@@ -527,6 +521,28 @@ const topics = [
     opacity: 0.5;
   }
 
+  /* Challenges */
+  .challenges {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1rem;
+  }
+
+  .challenge h4 {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--c-text);
+    margin-bottom: 0.4rem;
+  }
+
+  .challenge p {
+    font-size: 0.9rem;
+    color: var(--c-text);
+    line-height: 1.7;
+  }
+
   /* Schedule */
   .schedule-table {
     overflow-x: auto;
@@ -564,6 +580,14 @@ const topics = [
     width: 140px;
   }
 
+  .schedule-duration {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    color: var(--c-text-secondary);
+    font-size: 0.85rem;
+    width: 70px;
+  }
+
   .schedule-title {
     font-weight: 500;
   }
@@ -582,80 +606,72 @@ const topics = [
     font-weight: 400;
   }
 
-  /* Speakers */
-  .speakers-grid {
+  /* Organizers */
+  .organizers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
     margin-top: 1rem;
   }
 
-  .speaker-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
+  .organizer-card {
     padding: 1.25rem;
     border: 1px solid var(--c-border);
     border-radius: 4px;
     background: var(--c-bg);
+    text-align: center;
   }
 
-  .speaker-avatar {
-    width: 48px;
-    height: 48px;
+  .organizer-avatar {
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     background: var(--c-bg-alt);
     border: 1px solid var(--c-border);
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    margin: 0 auto 0.75rem;
   }
 
-  .speaker-avatar span {
+  .organizer-avatar span {
     font-family: var(--font-serif);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--c-text-secondary);
   }
 
-  .speaker-info h3 {
-    margin: 0;
+  h3.organizer-name,
+  a.organizer-name {
+    font-family: var(--font-serif);
     font-size: 1rem;
+    font-weight: 500;
+    margin: 0 0 0.2rem;
+    color: var(--c-text);
   }
 
-  .speaker-affiliation {
-    font-size: 0.82rem;
-    color: var(--c-text-secondary);
-    margin-top: 0.15rem;
-  }
-
-  .speaker-topic {
-    font-size: 0.82rem;
-    color: var(--c-text-secondary);
-    font-style: italic;
-    margin-top: 0.3rem;
-  }
-
-  /* Organizers */
-  .organizers-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .organizer {
-    font-size: 0.95rem;
-    padding: 0.5rem 0;
+  a.organizer-name {
+    text-decoration: none;
     border-bottom: 1px solid var(--c-border);
+    transition: border-color 0.2s;
   }
 
-  .organizer:last-child {
-    border-bottom: none;
+  a.organizer-name:hover {
+    border-color: var(--c-text);
   }
 
-  .organizer span {
+  .organizer-affiliation {
+    font-size: 0.82rem;
     color: var(--c-text-secondary);
+    line-height: 1.4;
   }
+
+  .organizer-location {
+    font-size: 0.78rem;
+    color: var(--c-text-secondary);
+    opacity: 0.7;
+    margin-top: 0.1rem;
+  }
+
 
   /* CTA */
   .section-cta {
@@ -703,11 +719,7 @@ const topics = [
   /* Responsive */
   @media (max-width: 640px) {
     .header-title {
-      font-size: 2.6rem;
-    }
-
-    .header-subtitle {
-      font-size: 1.1rem;
+      font-size: 1.6rem;
     }
 
     .nav-links {
