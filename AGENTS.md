@@ -32,7 +32,10 @@ Examples:
 
 ## Project Structure
 
+- `src/layouts/BaseLayout.astro` — shared layout (nav, footer, theme toggle, global CSS)
+- `src/utils/time.ts` — time helpers (t, fmt, minsToIcs)
+- `src/utils/calendar.ts` — calendar link generation (Google, Outlook, .ics)
 - `src/pages/index.astro` — redirects to latest year (/2026/)
-- `src/pages/2026/index.astro` — 2026 workshop page (content and styles)
+- `src/pages/2026/index.astro` — 2026 workshop page (data + page-specific content/styles)
 - `public/` — static assets (favicon, images)
 - `astro.config.mjs` — Astro configuration with GitHub Pages site URL
