@@ -23,7 +23,7 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <script is:inline>
       (function() {
         var mode = localStorage.getItem('theme') || 'system';
@@ -113,33 +113,59 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
 <style is:global>
   :root {
     --font-serif: 'EB Garamond', 'Georgia', serif;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Fraunces', 'EB Garamond', 'Georgia', serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --font-sans: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-    --c-bg: #faf9f7;
-    --c-bg-alt: #f3f1ee;
-    --c-text: #2c2c2c;
-    --c-text-secondary: #6b6560;
-    --c-accent: #4a5568;
-    --c-accent-dark: #2d3748;
-    --c-border: #e2dfd9;
-    --c-rule: #d4d0c8;
-    --c-link: #5a4f3f;
-    --c-link-hover: #3d3427;
-    --c-nav-bg: rgba(250, 249, 247, 0.92);
+    /* Warm cream paper, calibrated to the watercolor plate */
+    --c-bg: #f5efe3;
+    --c-bg-alt: #ede5d2;
+    --c-text: #1e1c17;
+    --c-text-secondary: #5e5749;
+    --c-border: #d5cab1;
+    --c-rule: #b9ac8b;
+    --c-nav-bg: rgba(245, 239, 227, 0.94);
+
+    /* Watercolor palette pulled from the skyline plate */
+    --c-terracotta: #c45a4e;
+    --c-sage: #7e9587;
+    --c-ochre: #c0944a;
+    --c-slate: #6b8593;
+    --c-rose: #c18d7c;
+    --c-plum: #8c5e6f;
+
+    /* Default accent — terracotta as the lead voice */
+    --c-accent: var(--c-terracotta);
+    --c-accent-dark: #a44539;
+    --c-link: var(--c-terracotta);
+    --c-link-hover: #2d2a24;
+
+    --c-ink-soft: rgba(45, 42, 36, 0.55);
   }
 
   :root[data-theme="dark"] {
-    --c-bg: #1a1a1a;
-    --c-bg-alt: #222120;
-    --c-text: #e0ddd8;
-    --c-text-secondary: #9a9590;
-    --c-accent: #a0aec0;
-    --c-accent-dark: #cbd5e0;
-    --c-border: #333130;
-    --c-rule: #3d3a37;
-    --c-link: #c4b8a8;
-    --c-link-hover: #e0d6c8;
-    --c-nav-bg: rgba(26, 26, 26, 0.92);
+    /* Lamplight — same palette glowing against dark ink */
+    --c-bg: #1d1b25;
+    --c-bg-alt: #25232f;
+    --c-text: #f0e6d4;
+    --c-text-secondary: #b4a78e;
+    --c-border: #3a3645;
+    --c-rule: #4f4858;
+    --c-nav-bg: rgba(29, 27, 37, 0.94);
+
+    --c-terracotta: #e6816f;
+    --c-sage: #9fb8a6;
+    --c-ochre: #d9b35e;
+    --c-slate: #93ade0;
+    --c-rose: #d8a895;
+    --c-plum: #b58598;
+
+    --c-accent: var(--c-terracotta);
+    --c-accent-dark: #f0a08f;
+    --c-link: var(--c-terracotta);
+    --c-link-hover: var(--c-text);
+
+    --c-ink-soft: rgba(240, 230, 212, 0.5);
   }
 
   * {
@@ -153,12 +179,18 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
   }
 
   body {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.7;
+    font-family: var(--font-serif);
+    font-size: 20px;
+    line-height: 1.75;
     color: var(--c-text);
     background: var(--c-bg);
     -webkit-font-smoothing: antialiased;
+    font-feature-settings: "onum" 1, "kern" 1, "liga" 1;
+  }
+
+  ::selection {
+    background: var(--c-text);
+    color: var(--c-bg);
   }
 
   /* Navigation */
@@ -167,14 +199,14 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
     top: 0;
     z-index: 100;
     background: var(--c-nav-bg);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--c-border);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--c-rule);
   }
 
   .nav-inner {
-    max-width: 860px;
+    max-width: 980px;
     margin: 0 auto;
-    padding: 0.75rem 1.5rem;
+    padding: 0.85rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -182,18 +214,23 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
   }
 
   .nav-brand {
-    font-family: var(--font-serif);
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
     color: var(--c-text);
     text-decoration: none;
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
   }
 
   .nav-year {
+    font-family: var(--font-mono);
     font-weight: 400;
     color: var(--c-text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    margin-left: 0.4rem;
+    vertical-align: 1px;
   }
 
   .nav-right {
@@ -209,11 +246,12 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
   }
 
   .nav-links a {
-    font-size: 0.82rem;
-    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 400;
     color: var(--c-text-secondary);
     text-decoration: none;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     transition: color 0.2s;
   }
@@ -263,9 +301,10 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
   :root[data-theme-mode="dark"] .icon-moon { display: inline; }
   :root[data-theme-mode="system"] .icon-system { display: inline; }
 
-  /* Shared section styles */
+  /* Shared section styles — quiet, calibrated whitespace */
   .section {
-    padding: 4rem 1.5rem;
+    padding: 3rem 1.5rem;
+    position: relative;
   }
 
   .section-alt {
@@ -273,78 +312,113 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
   }
 
   .container {
-    max-width: 760px;
+    max-width: 680px;
     margin: 0 auto;
+    position: relative;
+  }
+
+  /* Section head — just the title with a hairline rule below */
+  .section-head {
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .section-eyebrow {
+    display: none;
   }
 
   h2 {
-    font-family: var(--font-serif);
-    font-size: 1.8rem;
-    font-weight: 500;
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.5vw, 2.15rem);
+    font-weight: 400;
     color: var(--c-text);
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--c-rule);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
   }
 
   h3 {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: 1.2rem;
     font-weight: 500;
     color: var(--c-text);
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.9rem;
+    font-variation-settings: "opsz" 36, "SOFT" 30, "WONK" 0;
   }
 
   .section-note {
-    font-size: 0.85rem;
+    font-family: var(--font-serif);
+    font-size: 0.88rem;
     color: var(--c-text-secondary);
     font-style: italic;
     margin-bottom: 1.5rem;
   }
 
   .about-content p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.4rem;
     color: var(--c-text);
-    font-size: 0.95rem;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .about-content p:last-child {
+    margin-bottom: 0;
   }
 
   .section a {
-    color: var(--c-link);
+    color: var(--c-text);
     text-decoration: none;
-    border-bottom: 1px solid var(--c-border);
+    border-bottom: 1px solid var(--c-rule);
     transition: color 0.2s, border-color 0.2s;
   }
 
   .section a:hover {
-    color: var(--c-link-hover);
-    border-color: var(--c-link-hover);
+    color: var(--c-accent);
+    border-color: var(--c-accent);
+  }
+
+  .asterism {
+    display: none;
   }
 
   /* Footer */
   footer {
-    padding: 2.5rem 1.5rem;
+    padding: 3rem 1.5rem 4rem;
     text-align: center;
-    border-top: 1px solid var(--c-border);
+    border-top: 1px solid var(--c-rule);
   }
 
   footer p {
-    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--c-text-secondary);
   }
 
   .footer-sub {
-    margin-top: 0.3rem;
-    font-size: 0.78rem !important;
+    margin-top: 0.6rem;
+    font-size: 0.85rem !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-family: var(--font-serif) !important;
+    font-style: italic;
+    color: var(--c-text-secondary);
   }
 
   footer a {
-    color: var(--c-link);
+    color: var(--c-text);
     text-decoration: none;
+    border-bottom: 1px solid var(--c-rule);
+    transition: color 0.2s, border-color 0.2s;
   }
 
   footer a:hover {
-    color: var(--c-link-hover);
+    color: var(--c-accent);
+    border-color: var(--c-accent);
   }
 
   /* Responsive */
@@ -377,7 +451,11 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
     }
 
     .section {
-      padding: 2.5rem 1rem;
+      padding: 3.5rem 1.25rem;
+    }
+
+    h2 {
+      font-size: 1.55rem;
     }
   }
 </style>

@@ -3,7 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { t, fmt } from "../../utils/time";
 import { generateCalendarLinks, generateScheduleIcs } from "../../utils/calendar";
 
-const workshopShort = "CEVENA";
+const workshopShort = "CEVNAC";
 const workshopTitle = "Compilation, Emulation and Verification for Neutral Atom Computing";
 const conference = "IEEE Quantum Week";
 const year = "2026";
@@ -14,7 +14,7 @@ const location = "Toronto, Ontario, Canada";
 const calConfig = {
   title: `${workshopShort} ${year}: ${workshopTitle}`,
   location: "Metro Toronto Convention Centre, Toronto, Ontario, Canada",
-  description: `Workshop at ${conference} ${year}.\n${workshopTitle}\nhttps://cevena.github.io/2026/`,
+  description: `Workshop at ${conference} ${year}.\n${workshopTitle}\nhttps://cevnac.github.io/2026/`,
   date: "20260915",
   timezone: "America/Toronto",
   startMins: t(10, 0),
@@ -46,13 +46,37 @@ const icsUri = generateScheduleIcs(schedule, {
   prefix: workshopShort,
 });
 
-const organizers = [
-  { name: "Xiu-Zhe Luo", affiliation: "QuEra Computing Inc.", location: "Toronto, Canada", url: "https://rogerluo.dev" },
-  { name: "Rafael Haenel", affiliation: "QuEra Computing Inc.", location: "Boston, USA", url: "https://www.linkedin.com/in/rafael-haenel/" },
-  { name: "Phillip Weinberg", affiliation: "QuEra Computing Inc.", location: "Boston, USA", url: "https://www.linkedin.com/in/phillip-weinberg-a8a55262/" },
-  { name: "Jonathan Wurtz", affiliation: "QuEra Computing Inc.", location: "Boston, USA", url: "https://www.linkedin.com/in/jonathan-wurtz-7a4855181/" },
-  { name: "Pedro Lopes", affiliation: "QuEra Computing Inc.", location: "Boston, USA", url: "https://www.linkedin.com/in/pedrolslopes/" },
-  { name: "Yufei Ding", affiliation: "University of California, San Diego", location: "San Diego, USA", url: "" },
+// Grouped by affiliation; members alphabetized by last name within each group
+const affiliations = [
+  {
+    name: "QuEra Computing Inc.",
+    location: "Boston · Toronto",
+    members: [
+      { name: "Rafael Haenel", url: "https://www.linkedin.com/in/rafael-haenel/" },
+      { name: "Pedro Lopes", url: "https://www.linkedin.com/in/pedrolslopes/" },
+      { name: "Xiu-Zhe Luo", url: "https://rogerluo.dev" },
+      { name: "Phillip Weinberg", url: "https://www.linkedin.com/in/phillip-weinberg-a8a55262/" },
+      { name: "Jonathan Wurtz", url: "https://www.linkedin.com/in/jonathan-wurtz-7a4855181/" },
+    ],
+  },
+  {
+    name: "Technical University of Munich",
+    location: "Munich, Germany",
+    members: [
+      { name: "Lukas Burgholzer", url: "https://www.cda.cit.tum.de/team/burgholzer/" },
+      { name: "Ludwig Schmid", url: "" },
+      { name: "Yannick Stade", url: "https://www.cda.cit.tum.de/team/stade/" },
+      { name: "Robert Wille", url: "https://www.cda.cit.tum.de/team/wille/" },
+    ],
+  },
+  {
+    name: "University of California",
+    location: "Los Angeles · San Diego",
+    members: [
+      { name: "Jason Cong", url: "", subAffiliation: "UCLA" },
+      { name: "Yufei Ding", url: "", subAffiliation: "UCSD" },
+    ],
+  },
 ];
 
 const breaks = new Set(["Lunch", "Break"]);
@@ -72,70 +96,98 @@ const breaks = new Set(["Lunch", "Break"]);
   footerText={`${workshopShort} ${year} — Workshop at ${conference}`}
   contactEmail="rluo@quera.com"
 >
-  <header>
-    <div class="header-inner">
-      <p class="header-conference"><a href="https://qce.quantum.ieee.org/2026/" target="_blank" rel="noopener noreferrer">{conference}</a></p>
-      <h1 class="header-title">{workshopTitle}</h1>
-      <div class="header-meta">
-        <span class="header-meta-item">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-          {date}
-        </span>
-        <span class="header-meta-item">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          {location}
-        </span>
-      </div>
+  <header class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">
+        <span>{workshopShort} {year}</span>
+        <span class="dot">·</span>
+        <a href="https://qce.quantum.ieee.org/2026/" target="_blank" rel="noopener noreferrer">A workshop at IEEE QCE</a>
+      </p>
+      <h1 class="hero-title">
+        Compilation, Emulation <span class="amp">&amp;</span> Verification of Neutral Atom Programs
+      </h1>
+      <p class="hero-deck">
+        A community workshop on open problems in the neutral-atom software stack —
+        compilation, emulation, and verification.
+      </p>
+      <p class="hero-meta">
+        <span>{date}</span>
+        <span class="dot">·</span>
+        <span>Metro Toronto Convention Centre, Toronto</span>
+      </p>
     </div>
+    <div class="hero-skyline" aria-hidden="true"></div>
+    <div class="hero-skyline-fade" aria-hidden="true"></div>
   </header>
 
   <main>
-    <section id="about" class="section">
+    <section id="about" class="section" data-color="terracotta">
       <div class="container">
-        <h2>About the Workshop</h2>
+        <header class="section-head">
+          <div>
+            <span class="section-eyebrow">Abstract</span>
+            <h2>About the Workshop</h2>
+          </div>
+        </header>
         <div class="about-content">
+          <p class="lede">Neutral atom quantum computing is advancing rapidly toward fault-tolerant scale, opening rich software-level problems across compilers, emulators, and programming languages.</p>
           <p>
-            Neutral atom quantum computing has witnessed rapid progress toward utility-scale, fault-tolerant quantum computing (FTQC). As neutral atom arrays emerge as a powerful platform for quantum error correction demonstrations, the inherent flexibility of this architecture gives rise to a rich set of open problems at the software level -- spanning compilers, emulators, and programming languages.
-          </p>
-          <p>
-            This workshop brings together software developers and researchers from across the ecosystem to exchange ideas, present new approaches, and identify key open challenges arise from neutral atom devices. Topics of focus include: (1) move compilation with arbitrary qubit moves; (2) move scheduling under fixed-lane architectures; (3) realistic emulation of neutral atom programs; and (4) programming languages and formal verification for neutral atom devices.
-          </p>
-          <p>
-            The workshop will open with invited talks covering these topics, followed by a panel discussion with stakeholders from across the full neutral atom software stack, with the goal of advancing a shared, community-driven programming ecosystem.
+            This workshop convenes software developers and researchers to exchange ideas and identify open challenges. Focus areas: <em>(i)</em> move compilation with arbitrary qubit moves; <em>(ii)</em> move scheduling under fixed-lane architectures; <em>(iii)</em> realistic emulation; and <em>(iv)</em> languages and formal verification.
           </p>
         </div>
 
-        <h3>Key Challenges</h3>
-        <div class="challenges">
-          <div class="challenge">
-            <h4>Lack of a converged programming model</h4>
-            <p>The hardware architecture of neutral atom platforms continues to evolve rapidly, and the field has yet to converge on a standard programming model. Proposed architectures vary widely -- from zoned layouts optimized for scheduling to fixed-lane designs that simplify calibration. Recent advances such as continuous atom reloading introduce further programmability at the hardware level, leaving the execution model an open and exciting question.</p>
-          </div>
-          <div class="challenge">
-            <h4>Move optimization as an active research frontier</h4>
-            <p>A growing body of work has addressed qubit move optimization, yet the problem remains open. Emerging questions -- such as how move optimization integrates with practical error correction and how it fits within hardware-software-algorithm co-design -- are becoming prominent research directions.</p>
-          </div>
-          <div class="challenge">
-            <h4>Scalability of emulation and verification</h4>
-            <p>As hardware scales, realistic emulation and verification grow increasingly demanding. A typical error correction experiment already involves more than a hundred physical qubits; simulating such systems under realistic noise models and verifying their fidelity calls for new emulation methods that go beyond conventional approaches.</p>
-          </div>
-          <div class="challenge">
-            <h4>Program correctness under new programming models</h4>
-            <p>The high scalability and flexibility of neutral atom hardware gives rise to a highly asynchronous, parallel programming model. As programs grow in complexity, developing robust methods to verify their correctness becomes an important and largely open challenge, with clear analogies to formal verification efforts in classical software engineering.</p>
-          </div>
-        </div>
+        <h3 class="subhead">Open Problems</h3>
+        <ol class="challenges">
+          <li class="challenge">
+            <h4>No converged programming model</h4>
+            <p>Architectures range from monolithic to zoned to fixed-lane, and continuous atom reloading keeps shifting what's programmable at the hardware level.</p>
+          </li>
+          <li class="challenge">
+            <h4>Move optimization</h4>
+            <p>Qubit move optimization remains open — especially around how it integrates with error correction and hardware–software–algorithm co-design.</p>
+          </li>
+          <li class="challenge">
+            <h4>Scalable emulation &amp; verification</h4>
+            <p>Error-correction experiments already run on 100+ physical qubits. Simulating them under realistic noise calls for methods beyond conventional approaches.</p>
+          </li>
+          <li class="challenge">
+            <h4>Program correctness</h4>
+            <p>The asynchronous, parallel model these devices enable creates a verification challenge — with clear analogies to formal verification in classical software.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <section id="schedule" class="section section-alt">
+    <section id="outcomes" class="section section-alt" data-color="sage">
       <div class="container">
-        <h2>Schedule</h2>
+        <header class="section-head">
+          <div>
+            <span class="section-eyebrow">Anticipated</span>
+            <h2>Outcomes &amp; Aspirations</h2>
+          </div>
+        </header>
+        <ul class="aims">
+          <li>Consolidate a fragmented research community around open software challenges.</li>
+          <li>Develop a shared roadmap of open problems and promising directions.</li>
+          <li>Surface common abstractions across compilation, emulation, verification, and language design — toward shared infrastructure and standards.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="schedule" class="section" data-color="ochre">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <span class="section-eyebrow">The Programme</span>
+            <h2>Order of the Day</h2>
+          </div>
+        </header>
         <div class="about-content">
           <p>
-            The workshop is scheduled as a full day session for a total of approximately 4.5 hours of programming. The format is designed to balance technical depth with open community discussion. The session will feature 6 to 8 invited talks of 30 minutes each, covering the core topics of the workshop. The session will conclude with a moderated panel discussion, bringing together the invited speakers and other stakeholders from across the neutral atom software stack.
+            ~4.5 hours, balancing depth with discussion. 6–8 invited talks (30 min each), followed by brainstorming, Q&amp;A, and a moderated panel with stakeholders from across the stack.
           </p>
         </div>
-        <p class="section-note">Tentative schedule. All times are local ({location.split(",")[0]}).</p>
+        <p class="section-note">— Tentative programme; all times local to {location.split(",")[0]}.</p>
         <div class="schedule-table">
           <table>
             <thead>
@@ -173,143 +225,359 @@ const breaks = new Set(["Lunch", "Break"]);
           <span class="calendar-sep">/</span>
           <a href={outlookUrl} target="_blank" rel="noopener noreferrer">Outlook</a>
           <span class="calendar-sep">·</span>
-          <a href={icsUri} download="cevena-2026.ics">Download full schedule (.ics)</a>
+          <a href={icsUri} download="cevnac-2026.ics">Download full schedule (.ics)</a>
         </div>
       </div>
     </section>
 
-    <section id="organizers" class="section section-alt">
+    <section id="organizers" class="section section-alt" data-color="slate">
       <div class="container">
-        <h2>Organizers</h2>
-        <div class="organizers-grid">
-          {organizers.map((org) => (
-            <div class="organizer-card">
-              <div class="organizer-avatar">
-                <span>{org.name.charAt(0)}</span>
+        <header class="section-head">
+          <div>
+            <span class="section-eyebrow">Editorial Board</span>
+            <h2>Organisers &amp; Contributors</h2>
+          </div>
+        </header>
+        <div class="affiliations">
+          {affiliations.map((aff) => (
+            <div class="affiliation">
+              <div class="affiliation-head">
+                <h3 class="affiliation-name">{aff.name}</h3>
+                <span class="affiliation-location">{aff.location}</span>
               </div>
-              {org.url ? (
-                <a href={org.url} class="organizer-name" target="_blank" rel="noopener noreferrer">{org.name}</a>
-              ) : (
-                <h3 class="organizer-name">{org.name}</h3>
-              )}
-              <p class="organizer-affiliation">{org.affiliation}</p>
-              <p class="organizer-location">{org.location}</p>
+              <ul class="members">
+                {aff.members.map((m) => (
+                  <li class="member">
+                    {m.url ? (
+                      <a href={m.url} target="_blank" rel="noopener noreferrer" class="member-link">
+                        <span class="member-name">{m.name}</span>
+                        {m.subAffiliation && <span class="member-sub">{m.subAffiliation}</span>}
+                        <svg class="member-arrow" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                      </a>
+                    ) : (
+                      <span class="member-link member-link--inert">
+                        <span class="member-name">{m.name}</span>
+                        {m.subAffiliation && <span class="member-sub">{m.subAffiliation}</span>}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <section id="audience" class="section">
+    <section id="venue" class="section section-alt" data-color="plum">
       <div class="container">
-        <h2>Target Audience</h2>
-        <p>
-          This workshop is intended for researchers, developers, and practitioners from both industry and academia with foundational knowledge of neutral atom quantum computing. It will be of particular interest to those working on or curious about compilation, emulation, and formal verification of neutral atom programs -- including graduate students and early-career researchers looking to engage with open problems at the software-hardware interface in the neutral atom domain.
-        </p>
-      </div>
-    </section>
-
-    <section id="venue" class="section">
-      <div class="container">
-        <h2>Venue</h2>
-        <p>
-          The workshop is co-located with <a href="https://qce.quantum.ieee.org/2026/" target="_blank" rel="noopener noreferrer"><strong>{conference} 2026</strong></a> at the
-          Metro Toronto Convention Centre (MTCC) in {location}.
-        </p>
+        <header class="section-head">
+          <div>
+            <span class="section-eyebrow">Locale &amp; Audience</span>
+            <h2>Venue &amp; Audience</h2>
+          </div>
+        </header>
+        <div class="about-content meta-grid">
+          <div>
+            <h3 class="meta-h">Venue</h3>
+            <p>Co-located with <a href="https://qce.quantum.ieee.org/2026/" target="_blank" rel="noopener noreferrer"><strong>{conference} 2026</strong></a> at the Metro Toronto Convention Centre, {location}.</p>
+          </div>
+          <div>
+            <h3 class="meta-h">Audience</h3>
+            <p>Researchers and developers working on neutral atom software — graduate students and early-career researchers especially welcome.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 </BaseLayout>
 
 <style>
-  /* Header */
-  header {
-    padding: 5rem 1.5rem 4rem;
-    text-align: center;
-    border-bottom: 1px solid var(--c-border);
+  /* ─── Hero — single fold, skyline as ambient background ─── */
+  .hero {
+    position: relative;
+    min-height: clamp(460px, 70vh, 640px);
+    padding: 3rem 1.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
   }
 
-  .header-inner {
-    max-width: 720px;
+  .hero-content {
+    max-width: 680px;
     margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
   }
 
-  .header-conference {
-    font-size: 0.78rem;
-    font-weight: 500;
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--c-text-secondary);
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--c-text-secondary);
-    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-wrap: wrap;
   }
 
-  .header-conference a {
-    color: var(--c-text-secondary);
+  .hero-eyebrow .dot {
+    opacity: 0.5;
+  }
+
+  .hero-eyebrow a {
+    color: inherit;
     text-decoration: none;
-    border-bottom: 1px solid var(--c-border);
+    border-bottom: 1px solid var(--c-rule);
     transition: color 0.2s, border-color 0.2s;
   }
 
-  .header-conference a:hover {
+  .hero-eyebrow a:hover {
     color: var(--c-text);
     border-color: var(--c-text);
   }
 
-  .header-title {
-    font-family: var(--font-serif);
-    font-size: 2.4rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.85rem, 4.6vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
     color: var(--c-text);
-    line-height: 1.25;
-    margin-bottom: 2rem;
+    margin: 0;
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
+    max-width: 18ch;
   }
 
-  .header-meta {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+  .amp {
+    color: var(--c-accent);
   }
 
-  .header-meta-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.88rem;
+  .hero-deck {
+    max-width: 540px;
+    margin: 1.75rem 0 0;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--c-text);
+  }
+
+  .hero-meta {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--c-rule);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--c-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    max-width: 540px;
+  }
+
+  .hero-meta .dot {
+    opacity: 0.5;
+  }
+
+  /* Skyline + fade overlay share the SAME box sized to the image's
+     natural 1620:832 aspect-ratio. Height grows with the hero but never
+     wider than the viewport — so on ultra-wide and narrow screens the
+     fade always lands on the image's actual edges, not viewport edges. */
+  .hero-skyline,
+  .hero-skyline-fade {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: min(100%, calc(100vw * 832 / 1620));
+    aspect-ratio: 1620 / 832;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-skyline {
+    background-image: url("/toronto-skyline.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    mix-blend-mode: multiply;
+    /* Default = ultra-wide: image and title don't overlap, full presence */
+    opacity: 0.9;
+    filter: blur(0);
+    transition: opacity 0.25s ease, filter 0.25s ease;
+  }
+
+  /* Standard widths (≤ ~2000px = typical desktops): title overlaps the
+     image, so blur + lower opacity so the dark building lines don't
+     compete with the black title text. */
+  @media (max-width: 2000px) {
+    .hero-skyline {
+      opacity: 0.55;
+      filter: blur(1.5px);
+    }
+  }
+
+  /* Narrow widths: image sits squarely behind the title — soften more */
+  @media (max-width: 1100px) {
+    .hero-skyline {
+      opacity: 0.42;
+      filter: blur(2.5px);
+    }
+  }
+
+  /* Cream gradients painted on top of the image, sized to the image */
+  .hero-skyline-fade {
+    background:
+      linear-gradient(to right,  var(--c-bg) 0%, var(--c-bg) 6%, rgba(245,239,227,0.6) 22%, transparent 42%),
+      linear-gradient(to bottom, var(--c-bg) 0%, rgba(245,239,227,0.55) 12%, transparent 28%),
+      linear-gradient(to top,    var(--c-bg) 0%, rgba(245,239,227,0.55) 8%, transparent 22%);
+  }
+
+  :root[data-theme="dark"] .hero-skyline {
+    mix-blend-mode: screen;
+    filter: invert(1) hue-rotate(180deg) brightness(0.9) saturate(0.85);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 2000px) {
+    :root[data-theme="dark"] .hero-skyline {
+      opacity: 0.4;
+      filter: invert(1) hue-rotate(180deg) brightness(0.9) saturate(0.85) blur(1.5px);
+    }
+  }
+
+  @media (max-width: 1100px) {
+    :root[data-theme="dark"] .hero-skyline {
+      opacity: 0.3;
+      filter: invert(1) hue-rotate(180deg) brightness(0.9) saturate(0.85) blur(2.5px);
+    }
+  }
+
+  :root[data-theme="dark"] .hero-skyline-fade {
+    background:
+      linear-gradient(to right,  var(--c-bg) 0%, var(--c-bg) 6%, rgba(29,27,37,0.6) 22%, transparent 42%),
+      linear-gradient(to bottom, var(--c-bg) 0%, rgba(29,27,37,0.55) 12%, transparent 28%),
+      linear-gradient(to top,    var(--c-bg) 0%, rgba(29,27,37,0.55) 8%, transparent 22%);
+  }
+
+  .lede {
+    font-size: 1.05rem !important;
+  }
+
+  /* Two-column meta grid (venue + audience) */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .meta-h {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--c-text-secondary);
+    margin: 0 0 0.6rem;
     font-weight: 400;
   }
 
-  .header-meta-item svg {
-    opacity: 0.6;
+  .meta-grid p {
+    margin: 0;
   }
 
-  /* Challenges */
-  .challenges {
+  @media (max-width: 640px) {
+    .meta-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+  }
+
+  /* ─── Open Problems list ─────────────────────────────────── */
+  .subhead {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--c-text);
+    margin: 2.25rem 0 1.25rem;
+    font-variation-settings: "opsz" 36, "SOFT" 30, "WONK" 0;
+  }
+
+  /* ─── Aims list — Outcomes section ──────────────────────── */
+  .aims {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    margin-top: 1rem;
+    gap: 1.1rem;
+  }
+
+  .aims li {
+    position: relative;
+    padding-left: 1.6rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--c-text);
+  }
+
+  .aims li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--c-accent);
+  }
+
+  .challenges {
+    list-style: none;
+    padding: 0;
+    counter-reset: challenge;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    margin: 0;
+  }
+
+  .challenge {
+    counter-increment: challenge;
+    position: relative;
+    padding-left: 3rem;
+  }
+
+  .challenge::before {
+    content: counter(challenge, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--c-text-secondary);
+    letter-spacing: 0.1em;
   }
 
   .challenge h4 {
-    font-family: var(--font-serif);
-    font-size: 1.05rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
     font-weight: 500;
     color: var(--c-text);
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.65rem;
+    font-variation-settings: "opsz" 36, "SOFT" 30, "WONK" 0;
   }
 
   .challenge p {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--c-text);
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
-  /* Schedule */
+  /* ─── Schedule — quiet table ────────────────────────────── */
   .schedule-table {
     overflow-x: auto;
+    margin-top: 1rem;
   }
 
   table {
@@ -319,49 +587,58 @@ const breaks = new Set(["Lunch", "Break"]);
   }
 
   thead th {
-    font-family: var(--font-sans);
-    font-size: 0.72rem;
-    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.14em;
     color: var(--c-text-secondary);
     text-align: left;
-    padding: 0.5rem 0.75rem;
-    border-bottom: 2px solid var(--c-rule);
+    padding: 0.7rem 0.75rem;
+    border-bottom: 1px solid var(--c-rule);
   }
 
   tbody td {
-    padding: 0.65rem 0.75rem;
-    font-size: 0.9rem;
+    padding: 0.85rem 0.75rem;
+    font-size: 0.95rem;
     border-bottom: 1px solid var(--c-border);
     vertical-align: top;
   }
 
-  .col-time { width: 130px; }
+  .col-time { width: 140px; }
   .col-duration { width: 70px; }
-  .col-speaker { width: 100px; }
+  .col-speaker { width: 130px; }
 
   .schedule-time {
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
-    color: var(--c-text-secondary);
-    font-size: 0.85rem;
+    color: var(--c-text);
+    font-size: 0.8rem;
   }
 
   .schedule-duration {
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
     color: var(--c-text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 
   .schedule-title {
+    font-family: var(--font-serif);
     font-weight: 500;
+    color: var(--c-text);
   }
 
   .talk-details summary {
     cursor: pointer;
     list-style: none;
+    transition: color 0.2s;
+  }
+
+  .talk-details summary:hover {
+    color: var(--c-accent);
   }
 
   .talk-details summary::-webkit-details-marker,
@@ -371,151 +648,206 @@ const breaks = new Set(["Lunch", "Break"]);
   }
 
   .abstract-tag {
-    font-family: var(--font-sans);
-    font-size: 0.72rem;
-    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
     color: var(--c-text-secondary);
-    opacity: 0.6;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
     transition: opacity 0.2s;
+    margin-right: 0.4rem;
   }
 
-  .talk-details summary:hover .abstract-tag {
-    opacity: 1;
-  }
-
+  .talk-details summary:hover .abstract-tag,
   .talk-details[open] .abstract-tag {
-    opacity: 0.8;
+    opacity: 1;
+    color: var(--c-accent);
   }
 
   .talk-abstract {
-    margin-top: 0.5rem;
-    font-size: 0.82rem;
+    margin-top: 0.6rem;
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    font-style: italic;
     font-weight: 400;
     color: var(--c-text-secondary);
     line-height: 1.6;
-    border-left: 2px solid var(--c-border);
-    padding-left: 0.75rem;
+    padding-left: 0.85rem;
+    border-left: 1px solid var(--c-rule);
   }
 
   .schedule-speaker {
+    font-family: var(--font-serif);
     color: var(--c-text-secondary);
-    font-style: italic;
+    font-size: 0.9rem;
   }
 
   .break-row td {
     color: var(--c-text-secondary);
-    font-style: italic;
   }
 
   .break-row .schedule-title {
+    font-family: var(--font-serif);
+    font-style: italic;
     font-weight: 400;
+    color: var(--c-text-secondary);
   }
 
   .calendar-actions {
-    margin-top: 1.25rem;
-    font-size: 0.82rem;
+    margin-top: 1.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
     color: var(--c-text-secondary);
     display: flex;
     align-items: center;
-    gap: 0.4rem;
-  }
-
-  .calendar-label {
-    margin-right: 0.25rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   .calendar-sep {
     opacity: 0.4;
   }
 
-  .calendar-actions a {
-    color: var(--c-text-secondary);
-    text-decoration: none;
+  /* ─── Organisers grouped by affiliation ─────────────────── */
+  .affiliations {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .affiliation-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
     border-bottom: 1px solid var(--c-border);
-    transition: color 0.2s, border-color 0.2s;
   }
 
-  .calendar-actions a:hover {
+  .affiliation-name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 500;
     color: var(--c-text);
-    border-color: var(--c-text);
+    margin: 0;
+    font-variation-settings: "opsz" 36, "SOFT" 30, "WONK" 0;
   }
 
-  /* Organizers */
-  .organizers-grid {
+  .affiliation-location {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    color: var(--c-text-secondary);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .members {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
+    gap: 0.5rem 1.5rem;
   }
 
-  .organizer-card {
-    padding: 1.25rem;
-    border: 1px solid var(--c-border);
-    border-radius: 4px;
-    background: var(--c-bg);
-    text-align: center;
+  .member {
+    margin: 0;
   }
 
-  .organizer-avatar {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: var(--c-bg-alt);
-    border: 1px solid var(--c-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 0.75rem;
-  }
-
-  .organizer-avatar span {
-    font-family: var(--font-serif);
-    font-size: 1.2rem;
-    color: var(--c-text-secondary);
-  }
-
-  h3.organizer-name,
-  a.organizer-name {
+  .member-link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    padding: 0.5rem 0;
     font-family: var(--font-serif);
     font-size: 1rem;
-    font-weight: 500;
-    margin: 0 0 0.2rem;
     color: var(--c-text);
-  }
-
-  a.organizer-name {
     text-decoration: none;
-    border-bottom: 1px solid var(--c-border);
-    transition: border-color 0.2s;
+    border-bottom: none !important;
+    background: none !important;
+    transition: color 0.2s;
   }
 
-  a.organizer-name:hover {
-    border-color: var(--c-text);
+  a.member-link:hover {
+    color: var(--c-accent) !important;
+    background: none !important;
   }
 
-  .organizer-affiliation {
-    font-size: 0.82rem;
+  a.member-link:hover .member-name {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .member-name {
+    line-height: 1.3;
+  }
+
+  .member-sub {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--c-text-secondary);
-    line-height: 1.4;
+    padding: 0.1rem 0.35rem;
+    border: 1px solid var(--c-border);
+    border-radius: 2px;
+    line-height: 1;
+    align-self: center;
   }
 
-  .organizer-location {
-    font-size: 0.78rem;
-    color: var(--c-text-secondary);
-    opacity: 0.7;
-    margin-top: 0.1rem;
+  .member-arrow {
+    color: var(--c-accent);
+    opacity: 0.85;
+    flex-shrink: 0;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  a.member-link:hover .member-arrow {
+    transform: translate(2px, -2px);
+    opacity: 1;
+  }
+
+  .member-link--inert {
+    cursor: default;
   }
 
   /* Responsive */
-  @media (max-width: 640px) {
-    .header-title {
-      font-size: 1.4rem;
+  @media (max-width: 720px) {
+    .hero {
+      padding: 2.5rem 1.25rem 1.5rem;
+      min-height: clamp(440px, 75vh, 600px);
     }
 
-    .header-meta {
-      flex-direction: column;
-      gap: 0.5rem;
-      align-items: center;
+    .hero-skyline {
+      background-position: center bottom;
+      background-size: 200% auto;
+      opacity: 0.55;
+    }
+
+    .hero::after {
+      background:
+        linear-gradient(180deg, var(--c-bg) 0%, transparent 35%, transparent 60%, var(--c-bg) 100%);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      max-width: none;
+    }
+
+    .hero-meta {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
     }
 
     table {
@@ -531,42 +863,30 @@ const breaks = new Set(["Lunch", "Break"]);
     tbody tr {
       display: flex;
       flex-wrap: wrap;
-      padding: 0.6rem 0;
+      padding: 0.8rem 0;
       border-bottom: 1px solid var(--c-border);
     }
 
     tbody td {
       border-bottom: none;
-      padding: 0.1rem 0;
+      padding: 0.15rem 0;
     }
 
-    .schedule-time {
-      width: auto;
-      font-size: 0.78rem;
+    .schedule-time { font-size: 0.74rem; }
+    .schedule-duration { font-size: 0.72rem; }
+    .schedule-duration::before { content: "· "; }
+    .schedule-title { width: 100%; font-size: 0.95rem; margin-top: 0.2rem; }
+    .schedule-speaker { width: 100%; font-size: 0.85rem; }
+
+    .affiliation-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
     }
 
-    .schedule-duration {
-      width: auto;
-      font-size: 0.78rem;
-    }
-
-    .schedule-duration::before {
-      content: "· ";
-    }
-
-    .schedule-title {
-      width: 100%;
-      font-size: 0.88rem;
-    }
-
-    .schedule-speaker {
-      width: 100%;
-      font-size: 0.8rem;
-    }
-
-    .organizers-grid {
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 1rem;
+    .members {
+      grid-template-columns: 1fr;
+      gap: 0.1rem;
     }
 
     .calendar-actions {
