@@ -1,4 +1,4 @@
-# CEVENA Workshop Website
+# CEVNAC Workshop Website
 
 Workshop website for "Compilation, Emulation and Verification of Neutral Atom Programs" at IEEE QCE 2026.
 
@@ -8,7 +8,7 @@ Workshop website for "Compilation, Emulation and Verification of Neutral Atom Pr
 - **Styling**: Vanilla CSS with CSS custom properties (no Tailwind)
 - **Fonts**: EB Garamond (serif headings) + Inter (sans body)
 - **Package manager**: pnpm (do NOT use npm)
-- **Deployment**: GitHub Pages at https://cevena.github.io
+- **Deployment**: GitHub Pages at https://cevnac.github.io
 
 ## Commit Convention
 
