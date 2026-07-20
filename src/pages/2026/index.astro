@@ -4,18 +4,18 @@ import { t, fmt } from "../../utils/time";
 import { generateCalendarLinks, generateScheduleIcs } from "../../utils/calendar";
 
 const workshopShort = "CEVNAC";
-const workshopTitle = "Compilation, Emulation and Verification for Neutral Atom Computing";
+const workshopTitle = "Compilation, Emulation and Verification of Neutral Atom Computing";
 const conference = "IEEE Quantum Week";
 const year = "2026";
-const date = "September 13–18, 2026";
+const date = "Wednesday, September 16, 2026";
 const location = "Toronto, Ontario, Canada";
 
-// Calendar config (workshop date TBD within Sept 13-18; using Sept 15 as placeholder)
+// Calendar config — workshop is Wednesday, Sept 16, 2026 (block times per QCE)
 const calConfig = {
   title: `${workshopShort} ${year}: ${workshopTitle}`,
   location: "Metro Toronto Convention Centre, Toronto, Ontario, Canada",
   description: `Workshop at ${conference} ${year}.\n${workshopTitle}\nhttps://cevnac.github.io/2026/`,
-  date: "20260915",
+  date: "20260916",
   timezone: "America/Toronto",
   startMins: t(10, 0),
   endMins: t(16, 30),
@@ -24,19 +24,28 @@ const calConfig = {
 const { gcalUrl, outlookUrl } = generateCalendarLinks(calConfig);
 
 const schedule = [
-  { start: t(10, 0),  end: t(10, 5),  title: "Opening Remarks", speaker: "Organizing team", abstract: "" },
-  { start: t(10, 5),  end: t(10, 35), title: "Invited Talk I", speaker: "TBA", abstract: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
-  { start: t(10, 35), end: t(11, 5),  title: "Invited Talk II", speaker: "TBA", abstract: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
-  { start: t(11, 5),  end: t(11, 30), title: "Panel: Challenges in Neutral Atom Computing Software", speaker: "", abstract: "" },
-  { start: t(11, 30), end: t(13, 0),  title: "Lunch", speaker: "", abstract: "" },
-  { start: t(13, 0),  end: t(13, 30), title: "Invited Talk III", speaker: "TBA", abstract: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante." },
-  { start: t(13, 30), end: t(14, 0),  title: "Invited Talk IV", speaker: "TBA", abstract: "Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Donec sed odio dui. Maecenas faucibus mollis interdum." },
-  { start: t(14, 0),  end: t(14, 30), title: "Break", speaker: "", abstract: "" },
-  { start: t(14, 30), end: t(15, 0),  title: "Invited Talk V", speaker: "TBA", abstract: "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean lacinia bibendum nulla sed consectetur." },
-  { start: t(15, 0),  end: t(15, 30), title: "Invited Talk VI", speaker: "TBA", abstract: "Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet." },
-  { start: t(15, 30), end: t(15, 35), title: "Break", speaker: "", abstract: "" },
-  { start: t(15, 35), end: t(16, 25), title: "Panel Discussion & Open Q\u0026A", speaker: "", abstract: "" },
-  { start: t(16, 25), end: t(16, 30), title: "Closing Remarks", speaker: "", abstract: "" },
+  // Session 1 · 10:00–11:30 — Opening & landscape
+  { start: t(10, 0),  end: t(10, 5),  title: "Welcome & Framing",                    speaker: "Xiu-Zhe Luo · QuEra",       abstract: "" },
+  { start: t(10, 5),  end: t(10, 20), title: "Invited Talk (title TBA)",             speaker: "Yannick Stade · TU Munich", abstract: "" },
+  { start: t(10, 20), end: t(10, 35), title: "Invited Talk (title TBA)",             speaker: "TBA · NVIDIA",              abstract: "" },
+  { start: t(10, 35), end: t(10, 50), title: "QuEra Neutral-Atom Stack: Overview",   speaker: "Xiu-Zhe Luo · QuEra",       abstract: "" },
+  { start: t(10, 50), end: t(11, 5),  title: "Invited Talk (title TBA)",             speaker: "TBA · AWS",                 abstract: "" },
+  { start: t(11, 5),  end: t(11, 20), title: "Invited Talk (title TBA)",             speaker: "Hanyu · UCLA",              abstract: "" },
+  { start: t(11, 20), end: t(11, 30), title: "Roundtable: Open Problems in CEVNAC",  speaker: "All speakers",              abstract: "" },
+  { start: t(11, 30), end: t(13, 0),  title: "Lunch",                                speaker: "",                          abstract: "" },
+  // Session 2 · 13:00–14:30 — Architecture, compilation & tools
+  { start: t(13, 0),  end: t(13, 15), title: "Lane Architecture",                    speaker: "Phillip Weinberg · QuEra",  abstract: "" },
+  { start: t(13, 15), end: t(13, 30), title: "EGS Algorithm",                        speaker: "Jason Ludmir · Rice",       abstract: "" },
+  { start: t(13, 30), end: t(13, 45), title: "Invited Talk (title TBA)",             speaker: "Ludwig Schmid · TU Munich", abstract: "" },
+  { start: t(13, 45), end: t(14, 0),  title: "Real-time DEM Generation",             speaker: "Xiang Fang · UCSD",         abstract: "" },
+  { start: t(14, 0),  end: t(14, 30), title: "Live Demo: stellarscope + ppvm + deq", speaker: "Rafael Haenel · QuEra",     abstract: "" },
+  { start: t(14, 30), end: t(15, 0),  title: "Break",                                speaker: "",                          abstract: "" },
+  // Session 3 · 15:00–16:30 — Community, scheduling & panel
+  { start: t(15, 0),  end: t(15, 10), title: "Contributed Talk (open call)",         speaker: "TBA",                       abstract: "" },
+  { start: t(15, 10), end: t(15, 20), title: "Contributed Talk (open call)",         speaker: "TBA",                       abstract: "" },
+  { start: t(15, 20), end: t(15, 35), title: "Agentic Move Scheduling",              speaker: "Jixuan · QuEra + UCSD",     abstract: "" },
+  { start: t(15, 35), end: t(16, 25), title: "Panel Discussion",                     speaker: "Moderated by Xiu-Zhe Luo", abstract: "" },
+  { start: t(16, 25), end: t(16, 30), title: "Closing Remarks",                      speaker: "Xiu-Zhe Luo · QuEra", abstract: "" },
 ];
 
 const icsUri = generateScheduleIcs(schedule, {
@@ -104,7 +113,7 @@ const breaks = new Set(["Lunch", "Break"]);
         <a href="https://qce.quantum.ieee.org/2026/" target="_blank" rel="noopener noreferrer">A workshop at IEEE QCE</a>
       </p>
       <h1 class="hero-title">
-        Compilation, Emulation <span class="amp">&amp;</span> Verification of Neutral Atom Programs
+        Compilation, Emulation <span class="amp">&amp;</span> Verification of Neutral Atom Computing
       </h1>
       <p class="hero-deck">
         A community workshop on open problems in the neutral-atom software stack —
@@ -184,7 +193,7 @@ const breaks = new Set(["Lunch", "Break"]);
         </header>
         <div class="about-content">
           <p>
-            ~4.5 hours, balancing depth with discussion. 6–8 invited talks (30 min each), followed by brainstorming, Q&amp;A, and a moderated panel with stakeholders from across the stack.
+            Three 90-minute sessions across the day (10:00–16:30). Short invited talks from across the neutral-atom ecosystem — QuEra, TU Munich, NVIDIA, AWS, UCSD, Rice, and UCLA — plus two open-call contributed talks, a live tools demo, an open-problems roundtable, and a closing panel.
           </p>
         </div>
         <p class="section-note">— Tentative programme; all times local to {location.split(",")[0]}.</p>
