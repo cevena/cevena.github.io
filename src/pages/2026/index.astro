@@ -28,10 +28,10 @@ const schedule = [
   { start: t(10, 0),  end: t(10, 5),  title: "Welcome & Framing",                    speaker: "Xiu-Zhe Luo · QuEra",       abstract: "" },
   { start: t(10, 5),  end: t(10, 20), title: "Invited Talk (title TBA)",             speaker: "Yannick Stade · TU Munich", abstract: "" },
   { start: t(10, 20), end: t(10, 35), title: "Advancing Compilation and Simulation of Neutral Atoms", speaker: "Kyungjoo Noh · NVIDIA",     abstract: "" },
-  { start: t(10, 35), end: t(10, 50), title: "QuEra Neutral-Atom Stack: Overview",   speaker: "Xiu-Zhe Luo · QuEra",       abstract: "" },
-  { start: t(10, 50), end: t(11, 5),  title: "Invited Talk (title TBA)",             speaker: "TBA · AWS",                 abstract: "" },
-  { start: t(11, 5),  end: t(11, 20), title: "Invited Talk (title TBA)",             speaker: "Hanyu · UCLA",              abstract: "" },
-  { start: t(11, 20), end: t(11, 30), title: "Roundtable: Open Problems in CEVNAC",  speaker: "All speakers",              abstract: "" },
+  { start: t(10, 35), end: t(10, 45), title: "Break",                                speaker: "",                          abstract: "" },
+  { start: t(10, 45), end: t(11, 0),  title: "QuEra Neutral-Atom Stack: Overview",   speaker: "Xiu-Zhe Luo · QuEra",       abstract: "" },
+  { start: t(11, 0),  end: t(11, 15), title: "Invited Talk (title TBA)",             speaker: "TBA · AWS",                 abstract: "" },
+  { start: t(11, 15), end: t(11, 30), title: "Invited Talk (title TBA)",             speaker: "Hanyu · UCLA",              abstract: "" },
   { start: t(11, 30), end: t(13, 0),  title: "Lunch",                                speaker: "",                          abstract: "" },
   // Session 2 · 13:00–14:30 — Architecture, compilation & tools
   { start: t(13, 0),  end: t(13, 15), title: "Lane Architecture",                    speaker: "Phillip Weinberg · QuEra",  abstract: "" },
@@ -193,7 +193,7 @@ const breaks = new Set(["Lunch", "Break"]);
         </header>
         <div class="about-content">
           <p>
-            Three 90-minute sessions across the day (10:00–16:30). Short invited talks from across the neutral-atom ecosystem — QuEra, TU Munich, NVIDIA, AWS, UCSD, Rice, and UCLA — plus two open-call contributed talks, a live tools demo, an open-problems roundtable, and a closing panel.
+            Three 90-minute sessions across the day (10:00–16:30). Short invited talks from across the neutral-atom ecosystem — QuEra, TU Munich, NVIDIA, AWS, UCSD, Rice, and UCLA — plus two open-call contributed talks, a live tools demo, and a closing panel.
           </p>
         </div>
         <p class="section-note">— Tentative programme; all times local to {location.split(",")[0]}.</p>
