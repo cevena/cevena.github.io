@@ -25,11 +25,11 @@ const { gcalUrl, outlookUrl } = generateCalendarLinks(calConfig);
 
 const schedule = [
   // Session 1 · 10:00–11:30 — Opening & landscape
-  { start: t(10, 0),  end: t(10, 5),  title: "Welcome & Framing",                    speaker: "Xiu-Zhe Luo · QuEra",       abstract: "" },
+  { start: t(10, 0),  end: t(10, 5),  title: "Welcome & Framing",                    speaker: "Xiu-Zhe (Roger) Luo · QuEra",       abstract: "" },
   { start: t(10, 5),  end: t(10, 20), title: "Invited Talk (title TBA)",             speaker: "Yannick Stade · TU Munich", abstract: "" },
   { start: t(10, 20), end: t(10, 35), title: "Advancing Compilation and Simulation of Neutral Atoms", speaker: "Kyungjoo Noh · NVIDIA",     abstract: "" },
   { start: t(10, 35), end: t(10, 45), title: "Break",                                speaker: "",                          abstract: "" },
-  { start: t(10, 45), end: t(11, 0),  title: "QuEra Neutral-Atom Stack: Overview",   speaker: "Xiu-Zhe Luo · QuEra",       abstract: "" },
+  { start: t(10, 45), end: t(11, 0),  title: "QuEra Neutral-Atom Stack: Overview",   speaker: "Xiu-Zhe (Roger) Luo · QuEra",       abstract: "" },
   { start: t(11, 0),  end: t(11, 15), title: "Bottlenecks and Optimizations in Fault-Tolerant Compilation on Neutral Atoms", speaker: "Tim (Yi-Ting) Chen · AWS", abstract: "Neutral-atom architectures open up different opportunities to optimize quantum programs than their superconducting counterparts: reconfigurable connectivity via atom movement, zone-structured hardware, and global gate application all offer degrees of freedom that a fixed coupling map cannot express. This talk examines how a compiler can exploit these opportunities for fault-tolerant programs by reasoning about the underlying physical mechanisms. When neutral atom-based fault-tolerant quantum computing arrives on AWS, compilers that take advantage of these controls will power the most impactful workloads." },
   { start: t(11, 15), end: t(11, 30), title: "Invited Talk (title TBA)",             speaker: "Hanyu · UCLA",              abstract: "" },
   { start: t(11, 30), end: t(13, 0),  title: "Lunch",                                speaker: "",                          abstract: "" },
@@ -45,8 +45,8 @@ const schedule = [
   { start: t(15, 0),  end: t(15, 10), title: "Contributed Talk (open call)",         speaker: "TBA",                       abstract: "" },
   { start: t(15, 10), end: t(15, 20), title: "Contributed Talk (open call)",         speaker: "TBA",                       abstract: "" },
   { start: t(15, 20), end: t(15, 35), title: "Agentic Move Scheduling",              speaker: "Jixuan · QuEra + UCSD",     abstract: "" },
-  { start: t(15, 35), end: t(16, 25), title: "Panel Discussion",                     speaker: "Moderated by Xiu-Zhe Luo", abstract: "" },
-  { start: t(16, 25), end: t(16, 30), title: "Closing Remarks",                      speaker: "Xiu-Zhe Luo · QuEra", abstract: "" },
+  { start: t(15, 35), end: t(16, 25), title: "Panel Discussion",                     speaker: "Moderated by Xiu-Zhe (Roger) Luo", abstract: "" },
+  { start: t(16, 25), end: t(16, 30), title: "Closing Remarks",                      speaker: "Xiu-Zhe (Roger) Luo · QuEra", abstract: "" },
 ];
 
 const icsUri = generateScheduleIcs(schedule, {
@@ -64,7 +64,7 @@ const affiliations = [
     members: [
       { name: "Rafael Haenel", url: "https://www.linkedin.com/in/rafael-haenel/" },
       { name: "Pedro Lopes", url: "https://www.linkedin.com/in/pedrolslopes/" },
-      { name: "Xiu-Zhe Luo", url: "https://rogerluo.dev" },
+      { name: "Xiu-Zhe (Roger) Luo", url: "https://rogerluo.dev" },
       { name: "Phillip Weinberg", url: "https://www.linkedin.com/in/phillip-weinberg-a8a55262/" },
       { name: "Jonathan Wurtz", url: "https://www.linkedin.com/in/jonathan-wurtz-7a4855181/" },
     ],
