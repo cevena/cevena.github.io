@@ -25,28 +25,25 @@ const { gcalUrl, outlookUrl } = generateCalendarLinks(calConfig);
 
 const schedule = [
   // Session 1 · 10:00–11:30 — Opening & landscape
-  { start: t(10, 0),  end: t(10, 5),  title: "Welcome & Framing",                    speaker: "Xiu-Zhe (Roger) Luo · QuEra",       abstract: "" },
-  { start: t(10, 5),  end: t(10, 20), title: "Invited Talk (title TBA)",             speaker: "Yannick Stade · TU Munich", abstract: "" },
-  { start: t(10, 20), end: t(10, 35), title: "Advancing Compilation and Simulation of Neutral Atoms", speaker: "Kyungjoo Noh · NVIDIA",     abstract: "" },
-  { start: t(10, 35), end: t(10, 45), title: "Break",                                speaker: "",                          abstract: "" },
-  { start: t(10, 45), end: t(11, 0),  title: "QuEra Neutral-Atom Stack: Overview",   speaker: "Xiu-Zhe (Roger) Luo · QuEra",       abstract: "" },
-  { start: t(11, 0),  end: t(11, 15), title: "Bottlenecks and Optimizations in Fault-Tolerant Compilation on Neutral Atoms", speaker: "Tim (Yi-Ting) Chen · AWS", abstract: "Neutral-atom architectures open up different opportunities to optimize quantum programs than their superconducting counterparts: reconfigurable connectivity via atom movement, zone-structured hardware, and global gate application all offer degrees of freedom that a fixed coupling map cannot express. This talk examines how a compiler can exploit these opportunities for fault-tolerant programs by reasoning about the underlying physical mechanisms. When neutral atom-based fault-tolerant quantum computing arrives on AWS, compilers that take advantage of these controls will power the most impactful workloads." },
-  { start: t(11, 15), end: t(11, 30), title: "Invited Talk (title TBA)",             speaker: "Hanyu · UCLA",              abstract: "" },
+  { start: t(10, 0),  end: t(10, 10), title: "Welcome & Framing",                    speaker: "Xiu-Zhe (Roger) Luo · QuEra", abstract: "" },
+  { start: t(10, 10), end: t(10, 30), title: "Invited Talk (title TBA)",             speaker: "Yannick Stade · TU Munich", abstract: "" },
+  { start: t(10, 30), end: t(10, 50), title: "Advancing Compilation and Simulation of Neutral Atoms", speaker: "Kyungjoo Noh · NVIDIA",     abstract: "" },
+  { start: t(10, 50), end: t(11, 10), title: "QuEra Neutral-Atom Stack: Overview",   speaker: "Xiu-Zhe (Roger) Luo · QuEra", abstract: "" },
+  { start: t(11, 10), end: t(11, 30), title: "Invited Talk (title TBA)",             speaker: "Hanyu · UCLA",              abstract: "" },
   { start: t(11, 30), end: t(13, 0),  title: "Lunch",                                speaker: "",                          abstract: "" },
   // Session 2 · 13:00–14:30 — Architecture, compilation & tools
-  { start: t(13, 0),  end: t(13, 15), title: "Lane Architecture",                    speaker: "Phillip Weinberg · QuEra",  abstract: "" },
-  { start: t(13, 15), end: t(13, 30), title: "EGS Algorithm",                        speaker: "Jason Ludmir · Rice",       abstract: "" },
-  { start: t(13, 30), end: t(13, 45), title: "Invited Talk (title TBA)",             speaker: "Ludwig Schmid · TU Munich", abstract: "" },
-  { start: t(13, 45), end: t(13, 55), title: "Break",                                speaker: "",                          abstract: "" },
-  { start: t(13, 55), end: t(14, 10), title: "Simulating Neutral Atom Fault-Tolerant Protocols with Automated Detector Construction", speaker: "Xiang Fang · UCSD",         abstract: "Neutral atom hardware supports both transversal logic and Pauli product measurements for fault-tolerant computation, but evaluating these protocols requires careful detector construction to obtain meaningful logical error rate suppression. In this talk, we will introduce LightStim, a QEC evaluation framework with automated detector and logical-observable construction. We will show how LightStim can be used to build neutral-atom-based QEC experiments, construct detectors with verified correctness, inject hardware-tailored noise, and evaluate end-to-end logical circuit performance, through rigorous circuit-level simulation." },
-  { start: t(14, 10), end: t(14, 30), title: "Live Demo: ppvm + deq", speaker: "Rafael Haenel · QuEra",     abstract: "" },
+  { start: t(13, 0),  end: t(13, 20), title: "Bottlenecks and Optimizations in Fault-Tolerant Compilation on Neutral Atoms", speaker: "Tim (Yi-Ting) Chen · AWS", abstract: "Neutral-atom architectures open up different opportunities to optimize quantum programs than their superconducting counterparts: reconfigurable connectivity via atom movement, zone-structured hardware, and global gate application all offer degrees of freedom that a fixed coupling map cannot express. This talk examines how a compiler can exploit these opportunities for fault-tolerant programs by reasoning about the underlying physical mechanisms. When neutral atom-based fault-tolerant quantum computing arrives on AWS, compilers that take advantage of these controls will power the most impactful workloads." },
+  { start: t(13, 20), end: t(13, 40), title: "Lane Architecture",                    speaker: "Phillip Weinberg · QuEra",  abstract: "" },
+  { start: t(13, 40), end: t(14, 0),  title: "EGS Algorithm",                        speaker: "Jason Ludmir · Rice",       abstract: "" },
+  { start: t(14, 0),  end: t(14, 20), title: "Invited Talk (title TBA)",             speaker: "Ludwig Schmid · TU Munich", abstract: "" },
+  { start: t(14, 20), end: t(14, 30), title: "Contributed Talk (open call)",         speaker: "TBA",                       abstract: "" },
   { start: t(14, 30), end: t(15, 0),  title: "Break",                                speaker: "",                          abstract: "" },
-  // Session 3 · 15:00–16:30 — Community & scheduling
-  { start: t(15, 0),  end: t(15, 30), title: "Opening Talk (title TBA)",             speaker: "Elham Kashefi · University of Edinburgh", abstract: "" },
-  { start: t(15, 30), end: t(15, 45), title: "Contributed Talk (open call)",         speaker: "TBA",                       abstract: "" },
-  { start: t(15, 45), end: t(16, 0),  title: "Contributed Talk (open call)",         speaker: "TBA",                       abstract: "" },
-  { start: t(16, 0),  end: t(16, 25), title: "Compilation Pipeline and Shuttling Optimization for Neutral Atom Quantum Computing", speaker: "Jixuan · QuEra + UCSD",     abstract: "Neutral atom quantum computing offers unique advantages through mobile qubits and flexible connectivity. However, mapping quantum circuits onto these physical platforms requires addressing complex spatial and timing constraints. This workshop introduces an end to end compilation pipeline tailored for neutral atom architectures. We will discuss how to optimize atom shuttling to fully exploit distinct hardware capabilities, including parallel acousto optic deflector operations and zoned architectures. Additionally, we will discuss potential applications of AI and machine learning to accelerate these optimization tasks, aiming to improve overall compilation efficiency and execution fidelity." },
-  { start: t(16, 25), end: t(16, 30), title: "Closing Remarks",                      speaker: "Xiu-Zhe (Roger) Luo · QuEra", abstract: "" },
+  // Session 3 · 15:00–16:30 — Verification, scheduling & community
+  { start: t(15, 0),  end: t(15, 20), title: "Opening Talk (title TBA)",             speaker: "Elham Kashefi · University of Edinburgh", abstract: "" },
+  { start: t(15, 20), end: t(15, 40), title: "Simulating Neutral Atom Fault-Tolerant Protocols with Automated Detector Construction", speaker: "Xiang Fang · UCSD",         abstract: "Neutral atom hardware supports both transversal logic and Pauli product measurements for fault-tolerant computation, but evaluating these protocols requires careful detector construction to obtain meaningful logical error rate suppression. In this talk, we will introduce LightStim, a QEC evaluation framework with automated detector and logical-observable construction. We will show how LightStim can be used to build neutral-atom-based QEC experiments, construct detectors with verified correctness, inject hardware-tailored noise, and evaluate end-to-end logical circuit performance, through rigorous circuit-level simulation." },
+  { start: t(15, 40), end: t(16, 0),  title: "Live Demo: ppvm + deq",                speaker: "Rafael Haenel · QuEra",     abstract: "" },
+  { start: t(16, 0),  end: t(16, 20), title: "Compilation Pipeline and Shuttling Optimization for Neutral Atom Quantum Computing", speaker: "Jixuan · QuEra + UCSD",     abstract: "Neutral atom quantum computing offers unique advantages through mobile qubits and flexible connectivity. However, mapping quantum circuits onto these physical platforms requires addressing complex spatial and timing constraints. This workshop introduces an end to end compilation pipeline tailored for neutral atom architectures. We will discuss how to optimize atom shuttling to fully exploit distinct hardware capabilities, including parallel acousto optic deflector operations and zoned architectures. Additionally, we will discuss potential applications of AI and machine learning to accelerate these optimization tasks, aiming to improve overall compilation efficiency and execution fidelity." },
+  { start: t(16, 20), end: t(16, 30), title: "Closing Remarks",                      speaker: "Xiu-Zhe (Roger) Luo · QuEra", abstract: "" },
 ];
 
 const icsUri = generateScheduleIcs(schedule, {
@@ -194,7 +191,7 @@ const breaks = new Set(["Lunch", "Break"]);
         </header>
         <div class="about-content">
           <p>
-            Three 90-minute sessions across the day (10:00–16:30). Short invited talks from across the neutral-atom ecosystem — QuEra, TU Munich, NVIDIA, AWS, UCSD, Rice, UCLA, and the University of Edinburgh — plus two open-call contributed talks and a live tools demo.
+            Three 90-minute sessions across the day (10:00–16:30). Short invited talks from across the neutral-atom ecosystem — QuEra, TU Munich, NVIDIA, AWS, UCSD, Rice, UCLA, and the University of Edinburgh — plus an open-call contributed slot and a live tools demo.
           </p>
         </div>
         <p class="section-note">— Tentative programme; all times local to {location.split(",")[0]}.</p>
