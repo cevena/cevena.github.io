@@ -28,6 +28,18 @@ describe("chairProfiles", () => {
     }
   });
 
+  it("keeps every supplied introduction within a 20–30 second reading length", () => {
+    const completeProfiles = Object.values(chairProfiles).filter(
+      (profile) => profile.status === "complete",
+    );
+
+    for (const profile of completeProfiles) {
+      const wordCount = profile.introduction.trim().split(/\s+/).length;
+      expect(wordCount, profile.name).toBeGreaterThanOrEqual(45);
+      expect(wordCount, profile.name).toBeLessThanOrEqual(65);
+    }
+  });
+
   it("contains five pending profiles without unsupported copy", () => {
     const pendingProfiles = Object.values(chairProfiles).filter(
       (profile) => profile.status === "pending",

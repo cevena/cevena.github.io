@@ -31,7 +31,12 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <script is:inline>
       (function() {
-        var mode = localStorage.getItem('theme') || 'system';
+        var storedMode = localStorage.getItem('theme');
+        var isValidMode = storedMode === 'light' || storedMode === 'dark' || storedMode === 'system';
+        var mode = isValidMode ? storedMode : 'system';
+        if (!isValidMode && storedMode !== null) {
+          localStorage.removeItem('theme');
+        }
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         var resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
         document.documentElement.setAttribute('data-theme', resolved);
@@ -81,16 +86,19 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
 
     <script>
       const toggle = document.getElementById('theme-toggle')!;
-      const cycle: Record<string, string> = { light: 'dark', dark: 'system', system: 'light' };
+      type ThemeMode = "light" | "dark" | "system";
+      const sanitizeThemeMode = (mode: string | null): ThemeMode =>
+        mode === 'light' || mode === 'dark' || mode === 'system' ? mode : 'system';
+      const cycle: Record<ThemeMode, ThemeMode> = { light: 'dark', dark: 'system', system: 'light' };
 
-      function updateThemeControl(mode: string) {
+      function updateThemeControl(mode: ThemeMode) {
         const next = cycle[mode];
         const label = `Theme: ${mode}. Switch to ${next}.`;
         toggle.setAttribute("aria-label", label);
         toggle.setAttribute("title", label);
       }
 
-      function applyTheme(mode: string) {
+      function applyTheme(mode: ThemeMode) {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
         document.documentElement.setAttribute('data-theme', resolved);
@@ -103,15 +111,17 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
         updateThemeControl(mode);
       }
 
-      updateThemeControl(document.documentElement.getAttribute('data-theme-mode') || 'system');
+      const initialMode = sanitizeThemeMode(document.documentElement.getAttribute('data-theme-mode'));
+      document.documentElement.setAttribute('data-theme-mode', initialMode);
+      updateThemeControl(initialMode);
 
       toggle.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme-mode') || 'system';
+        const current = sanitizeThemeMode(document.documentElement.getAttribute('data-theme-mode'));
         applyTheme(cycle[current]);
       });
 
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-        const mode = document.documentElement.getAttribute('data-theme-mode');
+        const mode = sanitizeThemeMode(document.documentElement.getAttribute('data-theme-mode'));
         if (mode === 'system') {
           const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
@@ -203,6 +213,12 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
     scroll-behavior: smooth;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
     font-family: var(--font-serif);
     font-size: 20px;
@@ -242,6 +258,9 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
   .nav-brand {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
     color: var(--c-text);
     text-decoration: none;
   }
