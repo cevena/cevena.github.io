@@ -1,0 +1,72 @@
+---
+import { chairProfiles } from "../../data/2026/chairProfiles";
+import type { WorkshopScheduleEntry } from "../../data/2026/schedule";
+import { fmt } from "../../utils/time";
+
+interface Props {
+  entry: WorkshopScheduleEntry;
+}
+
+const { entry } = Astro.props;
+const isSpeakerEntry = entry.kind === "talk" || entry.kind === "remarks";
+const profile = isSpeakerEntry ? chairProfiles[entry.speakerId] : undefined;
+const introHeadingId = `${entry.id}-introduction-heading`;
+const pendingHeadingId = `${entry.id}-pending-heading`;
+---
+
+{isSpeakerEntry && profile ? (
+  <article
+    id={entry.id}
+    class:list={["chair-entry", `chair-entry--${profile.status}`]}
+    data-speaker-id={entry.speakerId}
+    data-profile-status={profile.status}
+  >
+    <div class="chair-entry__time">
+      <time datetime={`${fmt(entry.start)}:00`}>{fmt(entry.start)}</time>
+      <span aria-hidden="true">–</span>
+      <time datetime={`${fmt(entry.end)}:00`}>{fmt(entry.end)}</time>
+      <span class="chair-entry__kind">{entry.kind}</span>
+    </div>
+
+    <div class="chair-entry__content">
+      <header class="speaker-heading">
+        <p class="speaker-name">{profile.name}</p>
+        <p class="speaker-affiliation">{profile.affiliation}</p>
+        <h3>{entry.title}</h3>
+      </header>
+
+      {profile.status === "complete" ? (
+        <section class="chair-introduction" aria-labelledby={introHeadingId}>
+          <p id={introHeadingId} class="chair-material-label">20–30 second introduction · read aloud</p>
+          <p>{profile.introduction}</p>
+        </section>
+      ) : (
+        <section class="chair-pending" aria-labelledby={pendingHeadingId}>
+          <strong id={pendingHeadingId}>Pending speaker material</strong>
+          <p>{profile.statusNote}</p>
+        </section>
+      )}
+
+      {entry.abstract ? (
+        <details>
+          <summary>Talk abstract</summary>
+          <div class="details-copy"><p>{entry.abstract}</p></div>
+        </details>
+      ) : (
+        <p class="abstract-pending">Talk abstract pending</p>
+      )}
+
+      {profile.status === "complete" && (
+        <details>
+          <summary>Full supplied bio</summary>
+          <div class="details-copy"><p>{profile.bio}</p></div>
+        </details>
+      )}
+    </div>
+  </article>
+) : (
+  <div id={entry.id} class:list={["chair-interlude", `chair-interlude--${entry.kind}`]} role="separator" aria-label={`${entry.title}, ${fmt(entry.start)} to ${fmt(entry.end)}`}>
+    <p class="chair-interlude__time">{fmt(entry.start)}–{fmt(entry.end)}</p>
+    <p class="chair-interlude__title">{entry.title}</p>
+  </div>
+)}
