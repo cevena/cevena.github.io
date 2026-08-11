@@ -77,7 +77,7 @@ import { fmt } from "../../utils/time";
   }
 
   .chair-eyebrow {
-    color: var(--c-accent);
+    color: var(--c-accent-dark);
     font-size: 0.68rem;
     margin-bottom: 1rem;
   }
@@ -114,7 +114,7 @@ import { fmt } from "../../utils/time";
 
   .session-jumps {
     position: sticky;
-    top: 61px;
+    top: var(--nav-bar-height);
     z-index: 90;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -148,7 +148,7 @@ import { fmt } from "../../utils/time";
   }
 
   .session-jumps a:hover {
-    color: var(--c-accent);
+    color: var(--c-accent-dark);
   }
 
   .session-jumps a:focus-visible,
@@ -159,7 +159,7 @@ import { fmt } from "../../utils/time";
 
   .chair-session {
     padding-top: 4rem;
-    scroll-margin-top: 125px;
+    scroll-margin-top: calc(var(--nav-bar-height) + 52px);
   }
 
   .chair-session__heading {
@@ -189,12 +189,12 @@ import { fmt } from "../../utils/time";
     gap: 1rem;
     padding: 2.5rem 0;
     border-bottom: 1px solid var(--c-border);
-    scroll-margin-top: 125px;
+    scroll-margin-top: calc(var(--nav-bar-height) + 52px);
   }
 
   .chair-entry__time,
   .chair-interlude__time {
-    color: var(--c-accent);
+    color: var(--c-accent-dark);
     font-family: var(--font-mono);
     font-size: 0.77rem;
     font-variant-numeric: tabular-nums;
@@ -252,7 +252,7 @@ import { fmt } from "../../utils/time";
 
   .chair-material-label {
     margin-bottom: 0.65rem;
-    color: var(--c-ochre);
+    color: var(--c-accent-dark);
     font-size: 0.62rem;
     font-weight: 600;
     line-height: 1.4;
@@ -272,7 +272,7 @@ import { fmt } from "../../utils/time";
 
   .chair-pending strong {
     display: block;
-    color: var(--c-ochre);
+    color: var(--c-accent-dark);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
@@ -321,7 +321,7 @@ import { fmt } from "../../utils/time";
   .chair-entry summary::after {
     content: "+";
     flex: none;
-    color: var(--c-accent);
+    color: var(--c-accent-dark);
     font-size: 1rem;
   }
 

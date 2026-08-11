@@ -140,6 +140,7 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
     --font-display: 'Fraunces', 'EB Garamond', 'Georgia', serif;
     --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
     --font-sans: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --nav-bar-height: 73px;
 
     /* Warm cream paper, calibrated to the watercolor plate */
     --c-bg: #f5efe3;
@@ -228,6 +229,7 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
   }
 
   .nav-inner {
+    min-height: calc(var(--nav-bar-height) - 1px);
     max-width: 980px;
     margin: 0 auto;
     padding: 0.85rem 1.5rem;

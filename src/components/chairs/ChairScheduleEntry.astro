@@ -18,6 +18,7 @@ const pendingHeadingId = `${entry.id}-pending-heading`;
   <article
     id={entry.id}
     class:list={["chair-entry", `chair-entry--${profile.status}`]}
+    data-schedule-entry={entry.id}
     data-speaker-id={entry.speakerId}
     data-profile-status={profile.status}
   >
@@ -65,7 +66,7 @@ const pendingHeadingId = `${entry.id}-pending-heading`;
     </div>
   </article>
 ) : (
-  <div id={entry.id} class:list={["chair-interlude", `chair-interlude--${entry.kind}`]} role="separator" aria-label={`${entry.title}, ${fmt(entry.start)} to ${fmt(entry.end)}`}>
+  <div id={entry.id} class:list={["chair-interlude", `chair-interlude--${entry.kind}`]} data-schedule-entry={entry.id} role="separator" aria-label={`${entry.title}, ${fmt(entry.start)} to ${fmt(entry.end)}`}>
     <p class="chair-interlude__time">{fmt(entry.start)}–{fmt(entry.end)}</p>
     <p class="chair-interlude__title">{entry.title}</p>
   </div>
