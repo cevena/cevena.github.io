@@ -15,17 +15,26 @@ describe("chairProfiles", () => {
     expect(scheduledIds).toEqual(declaredIds);
   });
 
-  it("contains seven complete, substantive profiles", () => {
+  it("contains nine complete, substantive profiles", () => {
     const completeProfiles = Object.values(chairProfiles).filter(
       (profile) => profile.status === "complete",
     );
 
-    expect(completeProfiles).toHaveLength(7);
+    expect(completeProfiles).toHaveLength(9);
     for (const profile of completeProfiles) {
       expect(profile.bio.length).toBeGreaterThan(120);
       expect(profile.introduction.length).toBeGreaterThan(80);
-      expect(["email", "submission"]).toContain(profile.source);
+      expect(["email", "submission", "public-web"]).toContain(profile.source);
     }
+  });
+
+  it("identifies the two approved public-web profiles", () => {
+    const publicWebProfileIds = Object.entries(chairProfiles)
+      .filter(([, profile]) => profile.status === "complete" && profile.source === "public-web")
+      .map(([id]) => id)
+      .sort();
+
+    expect(publicWebProfileIds).toEqual(["jason-ludmir", "ying-wang"]);
   });
 
   it("keeps every supplied introduction within a 20–30 second reading length", () => {
@@ -40,12 +49,12 @@ describe("chairProfiles", () => {
     }
   });
 
-  it("contains five pending profiles without unsupported copy", () => {
+  it("contains three pending profiles without unsupported copy", () => {
     const pendingProfiles = Object.values(chairProfiles).filter(
       (profile) => profile.status === "pending",
     );
 
-    expect(pendingProfiles).toHaveLength(5);
+    expect(pendingProfiles).toHaveLength(3);
     for (const profile of pendingProfiles) {
       expect(profile.source).toBe("pending");
       expect(profile.statusNote.length).toBeGreaterThan(20);

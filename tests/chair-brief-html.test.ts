@@ -66,8 +66,8 @@ describe("built chair brief", () => {
     const profileStatuses = [...chair.matchAll(/data-profile-status="(complete|pending)"/g)].map(
       ([, status]) => status,
     );
-    expect(profileStatuses.filter((status) => status === "complete")).toHaveLength(9);
-    expect(profileStatuses.filter((status) => status === "pending")).toHaveLength(6);
+    expect(profileStatuses.filter((status) => status === "complete")).toHaveLength(12);
+    expect(profileStatuses.filter((status) => status === "pending")).toHaveLength(3);
 
     for (const entry of schedule) {
       if (entry.kind !== "talk" && entry.kind !== "remarks") continue;
@@ -98,12 +98,21 @@ describe("built chair brief", () => {
     expect(chair).toContain("Talk abstract");
   });
 
-  it("marks exactly five unique speakers as pending", () => {
+  it("marks exactly three unique speakers as pending", () => {
     const chair = readBuilt("2026/chair-brief/index.html");
     const pendingArticles = [...chair.matchAll(/<article\b[^>]*data-speaker-id="([^"]+)"[^>]*data-profile-status="pending"[^>]*>/g)];
     const pendingIds = pendingArticles.map(([, id]) => id);
 
-    expect(new Set(pendingIds).size).toBe(5);
+    expect(new Set(pendingIds).size).toBe(3);
     expect(chair).toContain("Pending speaker material");
+  });
+
+  it("labels approved web research separately from speaker-supplied bios", () => {
+    const chair = readBuilt("2026/chair-brief/index.html");
+    const publicWebProfiles = chair.match(/Public-source bio/g) ?? [];
+
+    expect(publicWebProfiles).toHaveLength(3);
+    expect(chair).toContain("Jason Ludmir is a Computer Science PhD student at Rice University");
+    expect(chair).toContain("Ying Wang is an Associate Professor of Systems Engineering at Stevens Institute of Technology");
   });
 });

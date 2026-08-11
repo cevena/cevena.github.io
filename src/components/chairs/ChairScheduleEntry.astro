@@ -59,7 +59,7 @@ const pendingHeadingId = `${entry.id}-pending-heading`;
 
       {profile.status === "complete" && (
         <details>
-          <summary>Full supplied bio</summary>
+          <summary>{profile.source === "public-web" ? "Public-source bio" : "Full supplied bio"}</summary>
           <div class="details-copy"><p>{profile.bio}</p></div>
         </details>
       )}

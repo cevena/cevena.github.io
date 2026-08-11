@@ -7,7 +7,7 @@ interface ProfileBase {
 
 interface CompleteChairProfile extends ProfileBase {
   status: "complete";
-  source: "email" | "submission";
+  source: "email" | "submission" | "public-web";
   bio: string;
   introduction: string;
 }
@@ -63,9 +63,10 @@ export const chairProfiles = {
   "jason-ludmir": {
     name: "Jason Ludmir",
     affiliation: "Rice University",
-    status: "pending",
-    source: "pending",
-    statusNote: "The talk title and abstract are available, but no speaker-supplied biography was found in the mailbox or attached submission.",
+    status: "complete",
+    source: "public-web",
+    introduction: "Jason Ludmir is a Computer Science PhD student at Rice University, advised by Tirthak Patel, working at the intersection of quantum computing and high-performance computing. His research focuses on hardware-aware compilation and systems optimization for Rydberg neutral-atom computers. His work on improving neutral-atom efficiency received first place in the graduate research competition at SC24.",
+    bio: "Jason Ludmir is a Computer Science PhD student at Rice University, where he works under Tirthak Patel at the intersection of quantum computing and high-performance computing. His research spans optimized compilation for Rydberg-atom systems, hybrid quantum-classical algorithms, and machine-learning-driven quantum frameworks. He earned an MSc in Computer Science from Brown University, focusing on database systems and optimization, and a BS in Finance from Wake Forest University. His work on reducing qubit waste from measurement-related ejections in neutral-atom systems received first prize in the graduate category at SC24.",
   },
   "yannick-stade": {
     name: "Yannick Stade",
@@ -78,9 +79,10 @@ export const chairProfiles = {
   "ying-wang": {
     name: "Ying Wang",
     affiliation: "Stevens Institute of Technology",
-    status: "pending",
-    source: "pending",
-    statusNote: "Two contributed talk abstracts are available, but no speaker-supplied biography was found in the mailbox or attached submission.",
+    status: "complete",
+    source: "public-web",
+    introduction: "Ying Wang is an Associate Professor of Systems Engineering at Stevens Institute of Technology. Her interdisciplinary research spans cybersecurity, wireless communications, health AI, and quantum computing. She holds a PhD in Electrical Engineering from Virginia Tech and brings experience from both academia and industry. At CEVNAC, she presents two studies addressing reliability in neutral-atom compilation and quantum error correction.",
+    bio: "Ying Wang is an Associate Professor in the Department of Systems Engineering at Stevens Institute of Technology. Her interdisciplinary research spans cybersecurity, wireless communications, health AI, and quantum computing, and she has broad experience in both industry and academia. She earned her PhD in Electrical Engineering from Virginia Tech, her MS in Electrical Engineering from the University of Cincinnati, and her BS in Information Engineering from Beijing University of Posts and Telecommunications. Her recent quantum-computing research includes quantum neural networks and reinforcement-learning initializations for variational quantum circuits.",
   },
   "elham-kashefi": {
     name: "Elham Kashefi",
