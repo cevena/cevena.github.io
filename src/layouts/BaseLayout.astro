@@ -7,9 +7,11 @@ interface Props {
   navLinks: { label: string; href: string }[];
   footerText: string;
   contactEmail: string;
+  robots?: string;
+  brandHref?: string;
 }
 
-const { title, description, navBrand, navYear, navLinks, footerText, contactEmail } = Astro.props;
+const { title, description, navBrand, navYear, navLinks, footerText, contactEmail, robots, brandHref = "#" } = Astro.props;
 ---
 
 <html lang="en">
@@ -22,6 +24,7 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {robots && <meta name="robots" content={robots} />}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,7 +43,7 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
   <body>
     <nav>
       <div class="nav-inner">
-        <a href="#" class="nav-brand" aria-label={`${navBrand} ${navYear}`}>
+        <a href={brandHref} class="nav-brand" aria-label={`${navBrand} ${navYear}`}>
           <img class="nav-logo nav-logo-light" src="/cevnac-logo-light.svg" alt={`${navBrand} ${navYear}`} width="1370" height="401" />
           <img class="nav-logo nav-logo-dark" src="/cevnac-logo-dark.svg" alt="" aria-hidden="true" width="1370" height="401" />
         </a>
@@ -76,6 +79,13 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
       const toggle = document.getElementById('theme-toggle')!;
       const cycle: Record<string, string> = { light: 'dark', dark: 'system', system: 'light' };
 
+      function updateThemeControl(mode: string) {
+        const next = cycle[mode];
+        const label = `Theme: ${mode}. Switch to ${next}.`;
+        toggle.setAttribute("aria-label", label);
+        toggle.setAttribute("title", label);
+      }
+
       function applyTheme(mode: string) {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
@@ -86,7 +96,10 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
         } else {
           localStorage.setItem('theme', mode);
         }
+        updateThemeControl(mode);
       }
+
+      updateThemeControl(document.documentElement.getAttribute('data-theme-mode') || 'system');
 
       toggle.addEventListener('click', () => {
         const current = document.documentElement.getAttribute('data-theme-mode') || 'system';
@@ -275,9 +288,13 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
 
   .menu-toggle {
     display: none;
+    align-items: center;
+    justify-content: center;
     background: none;
     border: none;
     padding: 0.2rem;
+    min-width: 44px;
+    min-height: 44px;
     cursor: pointer;
     color: var(--c-text-secondary);
   }
@@ -300,6 +317,8 @@ const { title, description, navBrand, navYear, navLinks, footerText, contactEmai
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
     transition: color 0.2s, border-color 0.2s;
     line-height: 1;
   }
