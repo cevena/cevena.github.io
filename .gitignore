@@ -23,6 +23,9 @@ pnpm-debug.log*
 # local design companion artifacts
 .superpowers/
 
+# isolated feature worktrees
+.worktrees/
+
 # jetbrains setting folder
 .idea/
 
