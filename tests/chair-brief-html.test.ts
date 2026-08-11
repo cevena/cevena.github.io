@@ -29,6 +29,7 @@ describe("built chair brief", () => {
   it("includes supplied introductions and expandable source material", () => {
     const chair = readBuilt("2026/chair-brief/index.html");
 
+    expect(chair).toContain("Wednesday, September 16 · Metro Toronto Convention Centre");
     expect(chair).toContain("20–30 second introduction");
     expect(chair).toContain("Tim (Yi-Ting) Chen");
     expect(chair).toContain("Jixuan Ruan");
