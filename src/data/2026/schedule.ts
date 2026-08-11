@@ -27,17 +27,20 @@ export interface WorkshopSession {
   end: number;
 }
 
-export interface WorkshopScheduleEntry {
+interface WorkshopScheduleEntryBase {
   id: string;
   sessionId: SessionId;
-  kind: ScheduleEntryKind;
   start: number;
   end: number;
   title: string;
   speaker: string;
   abstract: string;
-  speakerId?: SpeakerId;
 }
+
+export type WorkshopScheduleEntry = WorkshopScheduleEntryBase & (
+  | { kind: "talk" | "remarks"; speakerId: SpeakerId }
+  | { kind: "break" | "roundtable"; speakerId?: never }
+);
 
 export const sessions = [
   { id: "session-1", label: "Session 1", title: "Opening & landscape", start: t(10, 0), end: t(11, 30) },
