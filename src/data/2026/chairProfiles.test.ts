@@ -15,12 +15,12 @@ describe("chairProfiles", () => {
     expect(scheduledIds).toEqual(declaredIds);
   });
 
-  it("contains nine complete, substantive profiles", () => {
+  it("contains ten complete, substantive profiles", () => {
     const completeProfiles = Object.values(chairProfiles).filter(
       (profile) => profile.status === "complete",
     );
 
-    expect(completeProfiles).toHaveLength(9);
+    expect(completeProfiles).toHaveLength(10);
     for (const profile of completeProfiles) {
       expect(profile.bio.length).toBeGreaterThan(120);
       expect(profile.introduction.length).toBeGreaterThan(80);
@@ -49,12 +49,12 @@ describe("chairProfiles", () => {
     }
   });
 
-  it("contains three pending profiles without unsupported copy", () => {
+  it("contains two pending profiles without unsupported copy", () => {
     const pendingProfiles = Object.values(chairProfiles).filter(
       (profile) => profile.status === "pending",
     );
 
-    expect(pendingProfiles).toHaveLength(3);
+    expect(pendingProfiles).toHaveLength(2);
     for (const profile of pendingProfiles) {
       expect(profile.source).toBe("pending");
       expect(profile.statusNote.length).toBeGreaterThan(20);

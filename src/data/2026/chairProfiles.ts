@@ -94,9 +94,10 @@ export const chairProfiles = {
   "hanyu-wang": {
     name: "Hanyu Wang",
     affiliation: "University of California, Los Angeles",
-    status: "pending",
-    source: "pending",
-    statusNote: "Title, abstract, and biography are forthcoming; Hanyu replied on August 11 that the material would be prepared later that day.",
+    status: "complete",
+    source: "email",
+    introduction: "Hanyu Wang is a PhD student in the Department of Computer Science at UCLA, advised by Professor Jason Cong, and is broadly interested in mathematical optimization problems in electronic design automation. This talk carries that optimization perspective into cross-layer compilation for fault-tolerant quantum computing, spanning logical circuit synthesis at the frontend and real-time scheduling and routing at the backend.",
+    bio: "Hanyu Wang is a PhD student at UCLA in the Department of Computer Science advised by Prof. Jason Cong. Hanyu is broadly interested in mathematical optimization problems in electronic design automation.",
   },
   "rafael-haenel": {
     name: "Rafael Haenel",
