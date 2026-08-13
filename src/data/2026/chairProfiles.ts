@@ -40,9 +40,10 @@ export const chairProfiles = {
   "kyungjoo-noh": {
     name: "Kyungjoo Noh",
     affiliation: "NVIDIA",
-    status: "pending",
-    source: "pending",
-    statusNote: "Bio and talk abstract are forthcoming; Kyungjoo replied on August 11 that they should arrive within a day or two.",
+    status: "complete",
+    source: "email",
+    introduction: "Kyungjoo Noh is a Senior Quantum Error Correction Research Scientist at NVIDIA, working on fault-tolerant quantum computing with neutral-atom systems. He previously researched hardware-efficient error correction with bosonic cat qubits at the Amazon Center for Quantum Computing, and holds a PhD in Physics from Yale. His talk examines how atom loss reshapes compilation, verification, simulation, and decoding.",
+    bio: "Kyungjoo Noh is a Senior Quantum Error Correction Research Scientist at NVIDIA, where he works on fault-tolerant quantum computing with neutral atom systems. Prior to NVIDIA, he was at the Amazon Center for Quantum Computing, researching hardware-efficient ways to implement quantum error correction using noise-biased bosonic cat qubits. He received his BSc in Physics from Seoul National University in 2014 and his PhD in Physics from Yale University in 2020. His research interests include fault-tolerant quantum computing, quantum error correction, classical simulation of quantum systems, and quantum communication theory.",
   },
   "tim-chen": {
     name: "Tim (Yi-Ting) Chen",

@@ -66,8 +66,8 @@ describe("built chair brief", () => {
     const profileStatuses = [...chair.matchAll(/data-profile-status="(complete|pending)"/g)].map(
       ([, status]) => status,
     );
-    expect(profileStatuses.filter((status) => status === "complete")).toHaveLength(13);
-    expect(profileStatuses.filter((status) => status === "pending")).toHaveLength(2);
+    expect(profileStatuses.filter((status) => status === "complete")).toHaveLength(14);
+    expect(profileStatuses.filter((status) => status === "pending")).toHaveLength(1);
 
     for (const entry of schedule) {
       if (entry.kind !== "talk" && entry.kind !== "remarks") continue;
@@ -98,12 +98,12 @@ describe("built chair brief", () => {
     expect(chair).toContain("Talk abstract");
   });
 
-  it("marks exactly two unique speakers as pending", () => {
+  it("marks exactly one unique speaker as pending", () => {
     const chair = readBuilt("2026/chair-brief/index.html");
     const pendingArticles = [...chair.matchAll(/<article\b[^>]*data-speaker-id="([^"]+)"[^>]*data-profile-status="pending"[^>]*>/g)];
     const pendingIds = pendingArticles.map(([, id]) => id);
 
-    expect(new Set(pendingIds).size).toBe(2);
+    expect(new Set(pendingIds).size).toBe(1);
     expect(chair).toContain("Pending speaker material");
   });
 

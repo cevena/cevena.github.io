@@ -89,12 +89,12 @@ Bio sources currently confirmed:
 | Tim (Yi-Ting) Chen | Mailbox | Complete |
 | Jixuan Ruan | Mailbox | Complete |
 | Hanyu Wang | Mailbox | Complete |
+| Kyungjoo Noh | Mailbox | Complete |
 | Xiu-Zhe (Roger) Luo | Original submission | Complete |
 | Phillip Weinberg | Original submission | Complete |
 | Rafael Haenel | Original submission | Complete |
 | Yannick Stade | Original submission | Complete |
 | Lukas Burgholzer | Original submission | Complete |
-| Kyungjoo Noh | Mailbox follow-up | Bio and abstract forthcoming |
 | Jason Ludmir | None found | Pending bio |
 | Ying Wang | None found | Pending bio |
 | Elham Kashefi | None found | Pending title, abstract, and bio |
